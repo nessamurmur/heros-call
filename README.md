@@ -16,6 +16,19 @@ Languages keep Nimble’s limits, and Begin presents an editable hero overview w
 full native details one click away. Choice-driven art and individual credits remain
 visible throughout.
 
+## Screenshots
+
+**Calling selection — Mage**
+
+![Hero’s Call showing the Mage class preview, its illustration, and the calling selection roster.](https://raw.githubusercontent.com/nessamurmur/heros-call/main/docs/screenshots/calling-mage.png)
+
+**Ancestry selection — Bunbun**
+
+![Hero’s Call showing the Bunbun ancestry preview, its symbol, and the ancestry selection roster.](https://raw.githubusercontent.com/nessamurmur/heros-call/main/docs/screenshots/ancestry-bunbun.png)
+
+These screenshots show artwork from installed Nimble content. Available artwork
+depends on the content installed in your world.
+
 ## Package identity
 
 The module ID, installation folder, settings and actor-credit namespace are

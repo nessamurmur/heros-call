@@ -40,7 +40,7 @@ for (const doc of ['README.md', 'CHANGELOG.md', 'QA.md']) {
 }
 
 // The source folder is the publication boundary, not the parent workspace.
-const directories = new Set(['scripts', 'styles', 'assets', 'licenses', 'tests', 'tools', '.github']);
+const directories = new Set(['scripts', 'styles', 'assets', 'licenses', 'tests', 'tools', 'docs', '.github']);
 const rootFiles = new Set(['module.json', 'package.json', 'LICENSE', 'README.md', 'CREDITS.md',
   'ART-REVIEW.md', 'QA.md', 'CONTRIBUTING.md', 'CHANGELOG.md', 'RELEASING.md',
   'RELEASE-READINESS.md', '.gitignore', '.gitattributes']);
@@ -52,6 +52,7 @@ for (const name of readdirSync(root)) {
 const publishedFiles = [...rootFiles, ...[...directories].flatMap(files)];
 const sourceExtensions = {scripts: /\.mjs$/, styles: /\.css$/, assets: /\.(png|jpe?g|webp|svg)$/,
   licenses: /\.(txt|json|md)$/, tests: /\.(mjs|json|py)$/, tools: /\.(mjs|py)$/,
+  docs: /^docs\/screenshots\/[a-z0-9-]+\.png$/,
   '.github': /\.(ya?ml|md)$/};
 for (const path of publishedFiles) {
   existsFile(path);
