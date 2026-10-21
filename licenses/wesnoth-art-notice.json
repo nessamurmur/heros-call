@@ -1,0 +1,102 @@
+[
+  {
+    "id": "nature-druid",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/elves/druid.png",
+    "sha256": "75e6a4261a78f591b81b2b132ba9a860fa5ad5c9870bbef712d7ade0875b7d8f",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/elves/druid.webp",
+    "upstreamEmbeddedArtist": "Kathrin Polikeit(Kitty)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "holy-paladin",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/humans/paladin.png",
+    "sha256": "885a0a34d1232fa434653d9725f957b88403c9348ac8191e95d1872b73e9e39b",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/humans/paladin.webp",
+    "upstreamEmbeddedArtist": "Emilien Rotival(LordBob)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "light-priest",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/humans/mage-light.png",
+    "sha256": "fa223edc7305e27c83984457aeb54792ffaf8375bebbd8d49d1554f72f131c44",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/humans/mage-light.webp",
+    "upstreamEmbeddedArtist": "Kathrin Polikeit(Kitty)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "dwarf-explorer",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/dwarves/explorer.png",
+    "sha256": "eaac52839fab140828acf7ac7095c3d8aa676e747d33785460d777dad5b9ef11",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/dwarves/explorer.webp",
+    "upstreamEmbeddedArtist": "Phil Barber(thespaceinvader)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "orc-warrior",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/orcs/grunt.png",
+    "sha256": "3a5b52b786fb799109a7f92dfec7282170e6b39c59053a501f5608e994374afb",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/orcs/grunt.webp",
+    "upstreamEmbeddedArtist": "Emilien Rotival(LordBob)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "scaled-augur",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/saurians/augur.png",
+    "sha256": "9fb2d9ccf8a0285002b40f390491594e889e6fa2ffb3554fdaff7d680d924869",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/saurians/augur.webp",
+    "upstreamEmbeddedArtist": "Phil Barber(thespaceinvader)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "living-tree",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/woses/wose.png",
+    "sha256": "fd9d2d7fc5097d2b615ab8b91d9615c03ac3c31e6a3a4d0ee896c3ee06d3a6fe",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/woses/wose.webp",
+    "upstreamEmbeddedArtist": "Emilien Rotival(LordBob)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "living-ooze",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/monsters/giant-mudcrawler.png",
+    "sha256": "4752929adb7dc49a703fb80a14694681f892d813bd2752ff88e24919ef80df91",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/giant-mudcrawler.webp",
+    "upstreamEmbeddedArtist": "Kathrin Polikeit(Kitty)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "living-flame",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/monsters/fire_guardian.png",
+    "sha256": "65c3ebefc18e5e8cee9da1c954a1ea5e14e1bbeb1677cf87bd75b27a5a085583",
+    "license": "GPL-2.0-or-later",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/fire_guardian.webp",
+    "upstreamEmbeddedArtist": "Emilien Rotival(LordBob)",
+    "upstreamEmbeddedCopyright": "GNU GPL v2+",
+    "checked": "2026-10-20"
+  },
+  {
+    "id": "planar-jinn",
+    "bundledSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/jinn.webp",
+    "sha256": "7905d4abec2fb9c5cd4d073621505c200ff7cb94994340bc3b8bb2e6039928ba",
+    "license": "CC BY-SA 4.0",
+    "metadataEvidenceSource": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/jinn.webp",
+    "upstreamEmbeddedArtist": "Emilien Rotival(LordBob)",
+    "upstreamEmbeddedCopyright": "CC BY-SA 4.0",
+    "checked": "2026-10-20"
+  }
+]

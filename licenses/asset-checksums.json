@@ -1,0 +1,258 @@
+[
+  {
+    "file": "assets/art/dwarf-berserker.png",
+    "sha256": "78e0fd15597d36323cb934c5b69d5e01d2989f13ce40ebf80bd267116aa003db"
+  },
+  {
+    "file": "assets/art/elf-hunter.png",
+    "sha256": "dc24d22f930f34e3dc6284b8b5bb462a4efcd4a01edc22c10a8b0a7eed709e52"
+  },
+  {
+    "file": "assets/art/elf-mage.png",
+    "sha256": "cda9749cf4f375c05672c953acf42b854fd405ac007884c0d3248fb9c9fc4130"
+  },
+  {
+    "file": "assets/art/falconer.png",
+    "sha256": "bd1b63186065a6dd463166d1f99249176dce96ff3978f9fd951b403493fad55b"
+  },
+  {
+    "file": "assets/art/human-commander.png",
+    "sha256": "82ab8149a41189438bc96fa904e7b5fe6557266e29a8c3bd3500bb593e37ccac"
+  },
+  {
+    "file": "assets/art/human-warrior.png",
+    "sha256": "0d046c73c7ff9fff11e9257a1e7fb7a8fe4db6165fcda657fb6fd74d48e6a62e"
+  },
+  {
+    "file": "assets/art/knight.png",
+    "sha256": "f756064cecb7b69017f101f521c570716b5c7b20cc0b0e8522f898c71e7a4186"
+  },
+  {
+    "file": "assets/art/martial-artist.png",
+    "sha256": "709a27a5495c28c7ce5987d6e4acc0835674ed5d87dd76e71eb9be64bbb1d0bd"
+  },
+  {
+    "file": "assets/art/mentor.png",
+    "sha256": "ba532a2e22cb8deda8650e48633b14df042059002a786bb66216747ece262d87"
+  },
+  {
+    "file": "assets/art/orc-shaman.png",
+    "sha256": "9dac6dd3897da0848f6b52e3f3b6b3a5d39cdcd4f2e4f88bf51fd033cd79c372"
+  },
+  {
+    "file": "assets/art/orc-songweaver.png",
+    "sha256": "863b1bebec41519ba515bf56ebbbd912be25f9de636f1101513bca6f5d79a051"
+  },
+  {
+    "file": "assets/art/scout.png",
+    "sha256": "dc240b74661e913351b9b30b66a040481947a0655ca69b674850d8c66d3f7465"
+  },
+  {
+    "file": "assets/art/shapeshift.png",
+    "sha256": "0d2d13210dceb51e65ee6fc98bff52637babf4615ddea7db8e054caf8be25cd0"
+  },
+  {
+    "file": "assets/chapters/dryads-flute.png",
+    "sha256": "013e018d1f7cd3e0ef2d8ab409c28c459de3393aec4927263db8b56487517e37"
+  },
+  {
+    "file": "assets/chapters/elven-forest.png",
+    "sha256": "4cd7055233a933da98d505a5fb53eac4fb07a094653f74782cbb38a540feac8f"
+  },
+  {
+    "file": "assets/chapters/fairy-druid.png",
+    "sha256": "5b751eecaecb1dc06aa14141612a92aaeebfe6b7a3515f52800961f62501e082"
+  },
+  {
+    "file": "assets/chapters/female-elf-caster.png",
+    "sha256": "354f6409cd787da720c0614252ddd12b7333f87340034a8a2e6b033b41f705d9"
+  },
+  {
+    "file": "assets/chapters/island-cove.jpg",
+    "sha256": "9bf0e3152dbc50ba15db207d26d8f2e26cd2aff11fa69cf75a950f519e66c0b6"
+  },
+  {
+    "file": "assets/chapters/jump.png",
+    "sha256": "f14ae05d964fe83fab1873c7e098af8b55e05b1766bc8ca32e6c533cfdf320ce"
+  },
+  {
+    "file": "assets/chapters/martial-training.jpg",
+    "sha256": "760aab05d8c872b1e0f88cf66e2b8e69ff84a7fa98429b2f8ffa3463ddee5084"
+  },
+  {
+    "file": "assets/chapters/medical-attention.png",
+    "sha256": "a90885e3f2a37121f2f69821f6959caca2a39f3d0a6e0381576222aa901a1507"
+  },
+  {
+    "file": "assets/chapters/nourished-flower.png",
+    "sha256": "2bea146eb020c091e96140a5f33576bd0efe2721fd19e9808d2c41d4f7a39572"
+  },
+  {
+    "file": "assets/chapters/scroll-raider.png",
+    "sha256": "f2d8ec36e8f4dbf9ca9a46e15de5035126b87068005ca21bcb8ca2e576474a96"
+  },
+  {
+    "file": "assets/chapters/sitting-elf.png",
+    "sha256": "eb974cbe4d396aa8d360c7b31ced02bdbd2ee1fb9d7bfe954cce9a84056e4c96"
+  },
+  {
+    "file": "assets/chapters/skull-lodge.jpg",
+    "sha256": "72384d93d889568ba45162744eee44f7a43f77b81564e3593ce3963c1c858e54"
+  },
+  {
+    "file": "assets/chapters/squad-leader.png",
+    "sha256": "f0b6ca1a784f216d4bd1263b389dbb78d86dc976cf6814e605304e9ee7ca8800"
+  },
+  {
+    "file": "assets/chapters/warrior-study.jpg",
+    "sha256": "6a300543d4c5a7689937e70ec9a6740dbefa8731eb0fa18d6918b1a53a360ad9"
+  },
+  {
+    "file": "assets/chapters/whirlwind.png",
+    "sha256": "be325527e16409c7cbe90a88073d7f33f1045cf34b2dde7db037035e6c1468cf"
+  },
+  {
+    "file": "assets/chapters/wizard-tower.png",
+    "sha256": "24fcf2163f514ac7ad860f008d3887d84624bf153398fe3ab09f8c7f927a7a7f"
+  },
+  {
+    "file": "assets/curated/acrobat-practice.jpg",
+    "sha256": "f7b46a4e30572fdaf44d2bd2845856755f1b896908fbded4a5a752201d3bf7cc"
+  },
+  {
+    "file": "assets/curated/aristocrat.png",
+    "sha256": "d879f5145724d3f50bd5a1a2eebececed8e416766b8733ea895e842e07e818b7"
+  },
+  {
+    "file": "assets/curated/armory.png",
+    "sha256": "1e3187cfd8b2f3a551b9a20314acc99c11a8e67d42795230c38d866bad01e873"
+  },
+  {
+    "file": "assets/curated/botanist.png",
+    "sha256": "e7f586fc9defb30a13c0f2448f239e2a7cbf1ee46f17a27dfe2d98a55d549c42"
+  },
+  {
+    "file": "assets/curated/clockwork.png",
+    "sha256": "572ad980b8ca150727f9def79d1327df1015ca67b9800f204b13d4db9798c5cc"
+  },
+  {
+    "file": "assets/curated/condemned.png",
+    "sha256": "74ae4f9d094c752d4df388807238f833dfea7ebd8b46e02d71fcc344702e6d6e"
+  },
+  {
+    "file": "assets/curated/conscript.png",
+    "sha256": "41683cd67c7d701797e61357e64a5ea7663b5e1e06eb81e48a585c35337a5b50"
+  },
+  {
+    "file": "assets/curated/cutpurse.png",
+    "sha256": "d7dfc4e67d79acefbba49bc492b8601ff30a4d57eb0c4ae3650c867f1d415451"
+  },
+  {
+    "file": "assets/curated/dragon-adventurer.png",
+    "sha256": "6f228b4f140d9039fb59f77a7274bd1b62a6f0d1648959f86ddb2af5d3696bf8"
+  },
+  {
+    "file": "assets/curated/dwarf-explorer.png",
+    "sha256": "eaac52839fab140828acf7ac7095c3d8aa676e747d33785460d777dad5b9ef11"
+  },
+  {
+    "file": "assets/curated/elven-coat.png",
+    "sha256": "502ccb64c9e6954571c20944685c415f371cefc2739ca23c6dadf03a6ce1b8e8"
+  },
+  {
+    "file": "assets/curated/explorer.png",
+    "sha256": "52fa6881e16b89b45819706a02f6c86d87021f83751c0cc784725ae5b80b911d"
+  },
+  {
+    "file": "assets/curated/feathered-traveller.jpg",
+    "sha256": "9dfce1db1012ff8c38a46a4f65653edcfae212d765df33f7faffb54354a388a2"
+  },
+  {
+    "file": "assets/curated/goblin-salvager.png",
+    "sha256": "c4c023d01de08637ad22836837575b77c3e7df848423e74fe85942be6633c701"
+  },
+  {
+    "file": "assets/curated/goblin-wind.png",
+    "sha256": "da6181a1d1bae2696e593c978a7cbcc33a0ca3703b3eb1d5e2c3ad8b497cc0e5"
+  },
+  {
+    "file": "assets/curated/gold-vein.png",
+    "sha256": "80d9a4c6a5bbd0f3b7ee090bc068dae1c8845eed015a4db4f66b15e62a1fa89e"
+  },
+  {
+    "file": "assets/curated/holy-paladin.png",
+    "sha256": "885a0a34d1232fa434653d9725f957b88403c9348ac8191e95d1872b73e9e39b"
+  },
+  {
+    "file": "assets/curated/innkeeper.png",
+    "sha256": "64946149803ffc7013105e3216da078404dc575356a2cea4740b518c0dca2de9"
+  },
+  {
+    "file": "assets/curated/light-priest.png",
+    "sha256": "fa223edc7305e27c83984457aeb54792ffaf8375bebbd8d49d1554f72f131c44"
+  },
+  {
+    "file": "assets/curated/living-flame.png",
+    "sha256": "65c3ebefc18e5e8cee9da1c954a1ea5e14e1bbeb1677cf87bd75b27a5a085583"
+  },
+  {
+    "file": "assets/curated/living-ooze.png",
+    "sha256": "4752929adb7dc49a703fb80a14694681f892d813bd2752ff88e24919ef80df91"
+  },
+  {
+    "file": "assets/curated/living-tree.png",
+    "sha256": "fd9d2d7fc5097d2b615ab8b91d9615c03ac3c31e6a3a4d0ee896c3ee06d3a6fe"
+  },
+  {
+    "file": "assets/curated/nature-druid.png",
+    "sha256": "75e6a4261a78f591b81b2b132ba9a860fa5ad5c9870bbef712d7ade0875b7d8f"
+  },
+  {
+    "file": "assets/curated/orc-warrior.png",
+    "sha256": "3a5b52b786fb799109a7f92dfec7282170e6b39c59053a501f5608e994374afb"
+  },
+  {
+    "file": "assets/curated/planar-jinn.webp",
+    "sha256": "7905d4abec2fb9c5cd4d073621505c200ff7cb94994340bc3b8bb2e6039928ba"
+  },
+  {
+    "file": "assets/curated/potion-making.png",
+    "sha256": "fcb4d9e78e843c40adb9493a43e960d61cdff00d458d94909c6240741a2cb153"
+  },
+  {
+    "file": "assets/curated/rat-knight.png",
+    "sha256": "59d8327cf4211a6a546f96fabc2f9c60feee5c2afd6ca6ca6bdb652a4de65ad7"
+  },
+  {
+    "file": "assets/curated/reflection.png",
+    "sha256": "643a1819681780ced125b53978fb41436d1a41f78cc3f9d8055f436cc180a55a"
+  },
+  {
+    "file": "assets/curated/restless-spirits.png",
+    "sha256": "f37ed37a4d561001a3656039de82a06d669b6ab944b340d2b53394a848962a69"
+  },
+  {
+    "file": "assets/curated/satyr.png",
+    "sha256": "b2d55a71d11f55225a4e2e8ac9d435c4e0cd02f2c1282f5d460754c66e10e65a"
+  },
+  {
+    "file": "assets/curated/scaled-augur.png",
+    "sha256": "9fb2d9ccf8a0285002b40f390491594e889e6fa2ffb3554fdaff7d680d924869"
+  },
+  {
+    "file": "assets/curated/smith.png",
+    "sha256": "771b77f6b210b9751b701592e5564cb62be370c2d63118c75a2db05f65fe8f2b"
+  },
+  {
+    "file": "assets/curated/street-scout.png",
+    "sha256": "5485ceb0499fe9e89073ab3122762239555df87c2d7fcbac5b46fd530b29d5cf"
+  },
+  {
+    "file": "assets/curated/wight.png",
+    "sha256": "2df1b53db4943598472be031b2a43edd66c67646d828c030603ca04ddfb3fa0c"
+  },
+  {
+    "file": "assets/heros-call.svg",
+    "sha256": "a6eac668cd537b8dc4414c192eb8bbd663938554af38457c18c769c884fcd954"
+  }
+]

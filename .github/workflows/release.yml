@@ -1,0 +1,73 @@
+name: Release module
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    uses: ./.github/workflows/validate.yml
+
+  publish:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Check release tag and extract changelog
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          version = json.loads(Path('module.json').read_text())['version']
+          if os.environ['RELEASE_TAG'] != f'v{version}':
+              raise SystemExit('The tag must match module.json version exactly.')
+          changelog = Path('CHANGELOG.md').read_text()
+          pattern = rf'^## {re.escape(version)} — (\d{{4}}-\d{{2}}-\d{{2}})\s*$\n(.*?)(?=^## |\Z)'
+          section = re.search(pattern, changelog, re.MULTILINE | re.DOTALL)
+          if not section:
+              raise SystemExit('Add a dated changelog entry for this version before tagging.')
+          (Path(os.environ['RUNNER_TEMP']) / 'release-notes.md').write_text(section[2].strip() + '\n')
+          PY
+      - name: Build release assets
+        env:
+          RELEASE_REPOSITORY: ${{ github.repository }}
+        run: python3 tools/package.py --repository "https://github.com/$RELEASE_REPOSITORY"
+      - name: Upload and publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if draft=$(gh release view "$RELEASE_TAG" --json isDraft --jq .isDraft 2>/dev/null); then
+            if [ "$draft" != true ]; then
+              echo 'This release is already public. Published assets must not be overwritten.' >&2
+              exit 1
+            fi
+            gh release upload "$RELEASE_TAG" dist/*.zip dist/module.json dist/SHA256SUMS --clobber
+            gh release edit "$RELEASE_TAG" --notes-file "$RUNNER_TEMP/release-notes.md"
+          else
+            gh release create "$RELEASE_TAG" dist/*.zip dist/module.json dist/SHA256SUMS \
+              --verify-tag --draft --title "Hero's Call $RELEASE_TAG" \
+              --notes-file "$RUNNER_TEMP/release-notes.md"
+          fi
+          # Publish only after every asset has uploaded successfully.
+          gh release edit "$RELEASE_TAG" --draft=false --latest

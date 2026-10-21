@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+# Preserve credited SVG originals byte-for-byte as well.
+assets/*.svg -text
+# Preserve upstream legal notices, including their original whitespace.
+licenses/*.txt -text -whitespace

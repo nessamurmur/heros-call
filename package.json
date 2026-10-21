@@ -1,0 +1,12 @@
+{
+  "name": "heros-call",
+  "private": true,
+  "description": "Development tools for the Hero's Call Foundry VTT module",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "check": "node tools/check.mjs",
+    "test": "node --test && python3 -B -m unittest discover -s tests -p 'test_*.py'",
+    "build": "python3 tools/package.py"
+  }
+}

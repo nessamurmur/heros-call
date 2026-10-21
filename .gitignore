@@ -1,0 +1,22 @@
+/dist/
+/node_modules/
+__pycache__/
+*.pyc
+*.zip
+*.log
+.env
+.env.*
+.DS_Store
+Thumbs.db
+/.idea/
+/.vscode/
+# Local Foundry data and research never belong in this repository.
+/Data/
+/Config/
+/Logs/
+/userdata/
+/work/
+/outputs/
+*.pdf
+*.pem
+*.key

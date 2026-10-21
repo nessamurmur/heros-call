@@ -1,0 +1,6 @@
+Prismatic Art Collection
+https://github.com/hurleyit/prismatic_art
+All finished art is available under Creative Commons Attribution-ShareAlike 3.0.
+https://creativecommons.org/licenses/by-sa/3.0/
+Artist directories and original URLs are retained in chapter-art-sources.json.
+Verified 2026-10-17 against the repository README and artist directories.
