@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Extracted existing UI wording into four editable content files, including
+  class introductions, chapter prompts, accessibility labels and artwork captions.
+- Added an authoring guide and a per-entry human-authorship checklist, with
+  validation of required text keys and placeholders. Existing wording remains
+  pending human authorship; this change does not certify listing compliance.
+
 ## 0.1.0 — 2026-10-21
 
 First public release of Hero’s Call, intended for early testing. Earlier private iteration

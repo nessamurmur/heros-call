@@ -1,9 +1,10 @@
+import {withArtworkCopy} from './copy.mjs';
+
 // Curated interpretations, not official Nimble depictions.
 export const ARTWORK = Object.freeze([
   {
     "id": "elf-mage",
     "title": "Elf Male Caster",
-    "subject": "Elf spellcaster",
     "ancestry": "Elf",
     "classes": [
       "mage"
@@ -13,13 +14,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Elf%20Male%20Caster/Elf%20Male%20Caster.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "cda9749cf4f375c05672c953acf42b854fd405ac007884c0d3248fb9c9fc4130"
   },
   {
     "id": "elf-hunter",
     "title": "Archer",
-    "subject": "Elf archer",
     "ancestry": "Elf",
     "classes": [
       "hunter"
@@ -29,13 +28,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Archer/Archer.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "dc24d22f930f34e3dc6284b8b5bb462a4efcd4a01edc22c10a8b0a7eed709e52"
   },
   {
     "id": "dwarf-berserker",
     "title": "Barbarian Dwarf",
-    "subject": "Dwarf warrior",
     "ancestry": "Dwarf",
     "classes": [
       "berserker"
@@ -45,13 +42,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Barbarian%20Dwarf/Barbarian%20Dwarf.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "78e0fd15597d36323cb934c5b69d5e01d2989f13ce40ebf80bd267116aa003db"
   },
   {
     "id": "orc-songweaver",
     "title": "Orc Drummer",
-    "subject": "Orc drummer",
     "ancestry": "Orc",
     "classes": [
       "songweaver"
@@ -61,13 +56,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Orc%20Drummer/Orc%20Drummer.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "863b1bebec41519ba515bf56ebbbd912be25f9de636f1101513bca6f5d79a051"
   },
   {
     "id": "human-commander",
     "title": "Human Female Fighter",
-    "subject": "Human swordswoman",
     "ancestry": "Human",
     "classes": [
       "commander"
@@ -77,13 +70,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Human%20Female%20Fighter/Human%20Female%20Fighter.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "82ab8149a41189438bc96fa904e7b5fe6557266e29a8c3bd3500bb593e37ccac"
   },
   {
     "id": "falconer",
     "title": "Falconer",
-    "subject": "Falconer",
     "ancestry": "Human",
     "classes": [
       "hunter"
@@ -93,13 +84,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Falconer/Falconer.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "bd1b63186065a6dd463166d1f99249176dce96ff3978f9fd951b403493fad55b"
   },
   {
     "id": "knight",
     "title": "Knight",
-    "subject": "Armoured knight",
     "ancestry": "Human",
     "classes": [],
     "artist": "Nico Goeminne",
@@ -107,13 +96,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Knight/knight.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "f756064cecb7b69017f101f521c570716b5c7b20cc0b0e8522f898c71e7a4186"
   },
   {
     "id": "orc-shaman",
     "title": "Orc Shaman",
-    "subject": "Orc shaman",
     "ancestry": "Orc",
     "classes": [
       "shadowmancer",
@@ -124,13 +111,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Orc%20Shaman/Orc%20Shaman.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "9dac6dd3897da0848f6b52e3f3b6b3a5d39cdcd4f2e4f88bf51fd033cd79c372"
   },
   {
     "id": "scout",
     "title": "Sneaking Elven Scout",
-    "subject": "Elven scout",
     "ancestry": "Elf",
     "classes": [
       "the-cheat"
@@ -140,13 +125,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Sneaking%20Elven%20Scout/Sneaking%20Elven%20Scout.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "dc240b74661e913351b9b30b66a040481947a0655ca69b674850d8c66d3f7465"
   },
   {
     "id": "martial-artist",
     "title": "Nun",
-    "subject": "A nun carrying two daggers",
     "ancestry": "Human",
     "classes": [],
     "artist": "Santiago Iborra",
@@ -154,13 +137,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Nun/Nun.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "709a27a5495c28c7ce5987d6e4acc0835674ed5d87dd76e71eb9be64bbb1d0bd"
   },
   {
     "id": "shapeshift",
     "title": "Shapeshift",
-    "subject": "Winged shapeshifter",
     "ancestry": "Celestial",
     "classes": [],
     "artist": "Santiago Iborra",
@@ -168,13 +149,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Shapeshift/Shapeshift.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "0d2d13210dceb51e65ee6fc98bff52637babf4615ddea7db8e054caf8be25cd0"
   },
   {
     "id": "human-warrior",
     "title": "Human Male Fighter",
-    "subject": "Human warrior",
     "ancestry": "Human",
     "classes": [
       "berserker"
@@ -184,13 +163,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Human%20Male%20Fighter/Human%20Male%20Fighter.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "0d046c73c7ff9fff11e9257a1e7fb7a8fe4db6165fcda657fb6fd74d48e6a62e"
   },
   {
     "id": "mentor",
     "title": "Mentor",
-    "subject": "Human mentor",
     "ancestry": "Human",
     "classes": [],
     "artist": "Santiago Iborra",
@@ -198,13 +175,11 @@ export const ARTWORK = Object.freeze([
     "source": "https://github.com/wtactics/art/blob/master/WT/Mentor/Mentor.png",
     "license": "CC BY-SA 4.0",
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "changes": "Original PNG unchanged. Scaled and framed with CSS in the interface.",
     "sha256": "ba532a2e22cb8deda8650e48633b14df042059002a786bb66216747ece262d87"
   },
   {
     "id": "nature-druid",
     "title": "Elvish Druid",
-    "subject": "A druid in living leaves and flowers, nurturing a magical vine",
     "artist": "Kathrin Polikeit (Kitty)",
     "image": "modules/heros-call/assets/curated/nature-druid.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/elves/druid.png",
@@ -212,7 +187,6 @@ export const ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "75e6a4261a78f591b81b2b132ba9a860fa5ad5c9870bbef712d7ade0875b7d8f",
     "ancestry": "Elf",
     "classes": [
@@ -223,7 +197,6 @@ export const ARTWORK = Object.freeze([
   {
     "id": "holy-paladin",
     "title": "Paladin",
-    "subject": "A mounted paladin wearing a radiant sun emblem and a ceremonial mantle",
     "artist": "Emilien Rotival (LordBob)",
     "image": "modules/heros-call/assets/curated/holy-paladin.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/humans/paladin.png",
@@ -231,7 +204,6 @@ export const ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "885a0a34d1232fa434653d9725f957b88403c9348ac8191e95d1872b73e9e39b",
     "ancestry": "Human",
     "classes": [
@@ -242,7 +214,6 @@ export const ARTWORK = Object.freeze([
   {
     "id": "light-priest",
     "title": "Mage of Light",
-    "subject": "A priest in white vestments and a mitre, carrying a luminous staff",
     "artist": "Kathrin Polikeit (Kitty)",
     "image": "modules/heros-call/assets/curated/light-priest.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/humans/mage-light.png",
@@ -250,7 +221,6 @@ export const ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "fa223edc7305e27c83984457aeb54792ffaf8375bebbd8d49d1554f72f131c44",
     "ancestry": "Human",
     "classes": [
@@ -261,7 +231,6 @@ export const ARTWORK = Object.freeze([
   {
     "id": "martial-training",
     "title": "Martial Arts",
-    "subject": "Two unarmed martial artists turning kicks and acrobatics into fluid movement",
     "artist": "Amy Clare",
     "image": "modules/heros-call/assets/chapters/martial-training.jpg",
     "source": "https://github.com/hurleyit/prismatic_art/blob/master/Amy%20Clare/Amy%20Martial%20Arts.jpg",
@@ -269,7 +238,6 @@ export const ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "collection": "Prismatic Art Collection",
     "kind": "ink",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "760aab05d8c872b1e0f88cf66e2b8e69ff84a7fa98429b2f8ffa3463ddee5084",
     "ancestry": "Human",
     "classes": [
@@ -277,7 +245,7 @@ export const ARTWORK = Object.freeze([
     ],
     "portrait": false
   }
-]);
+].map(withArtworkCopy));
 
 export const CALLING_ART = Object.freeze({
   "berserker": "dwarf-berserker",

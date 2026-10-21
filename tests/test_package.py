@@ -18,11 +18,13 @@ class PackagingTest(unittest.TestCase):
         self.root = Path(self.temporary.name)
         self.manifest = {'id': 'heros-call', 'version': '0.1.0'}
         for name in package.DOCUMENTS:
+            (self.root / name).parent.mkdir(parents=True, exist_ok=True)
             (self.root / name).write_text('Synthetic public document')
         (self.root / 'module.json').write_text(json.dumps(self.manifest))
         for directory in package.DIRECTORIES:
             (self.root / directory).mkdir()
         (self.root / 'assets/portrait.png').write_bytes(b'synthetic unchanged artwork')
+        (self.root / 'content/interface.mjs').write_text('export default {"label":"Human-authored label"};\n')
 
     def test_private_research_and_tools_cannot_leak_into_archive(self):
         for directory in ('work', 'userdata', 'tests', '.git', 'tools'):
@@ -34,6 +36,9 @@ class PackagingTest(unittest.TestCase):
             self.assertTrue(all(name.startswith('heros-call/') for name in archive.namelist()))
             self.assertFalse(any('private' in name for name in archive.namelist()))
             self.assertEqual(archive.read('heros-call/assets/portrait.png'), b'synthetic unchanged artwork')
+            self.assertEqual(archive.read('heros-call/content/interface.mjs'),
+                             (self.root / 'content/interface.mjs').read_bytes())
+            self.assertIn('heros-call/docs/COPY-AUTHORING.md', archive.namelist())
 
     def test_symlinked_assets_and_unrecognised_files_are_rejected(self):
         extra = self.root / 'assets/unreviewed.pdf'

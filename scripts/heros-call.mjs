@@ -1,3 +1,4 @@
+import {copy, htmlCopy, escapeHTML} from './copy.mjs';
 import { createCalling } from './calling.mjs';
 import {createJourney} from './journey.mjs';
 import {createReview} from './review.mjs';
@@ -24,15 +25,13 @@ const el = (tag, className, content) => {
   return node;
 };
 
-const escapeHTML = value => String(value).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-
 function modal(title, content, owner) {
   const dialog = el('dialog', 'heros-call-modal');
   dialog.setAttribute('aria-label', title);
   const header = el('header', 'heros-call-modal-header');
   const heading = el('h2', '');
   heading.textContent = title;
-  const close = el('button', 'heros-call-text-button', 'Close <span aria-hidden="true">×</span>');
+  const close = el('button', 'heros-call-text-button', `${htmlCopy('ui.common.close')} <span aria-hidden="true">×</span>`);
   close.type = 'button';
   close.addEventListener('click', () => dialog.close());
   header.append(heading, close);
@@ -51,13 +50,13 @@ function modal(title, content, owner) {
 
 export function showCredits(owner, artId) {
   const content = el('div', 'heros-call-credits', `
-    <p class="heros-call-eyebrow">Made possible by open art</p>
-    <p>Character and chapter illustrations from Arcmage / WTactics, the Prismatic Art Collection, and OpenGameArt. Original files are bundled locally, unchanged; the interface scales and frames them with CSS.</p>
-    <p>Each work retains its own license below. Credits include Creative Commons and GPL artwork; license texts and source records accompany the module. Illustrations suggest a character or chapter without prescribing your appearance, beliefs, or inventory. No artist endorsement is implied.</p>
-    ${ALL_ARTWORK.map(art => `<article data-art-credit="${escapeHTML(art.id)}"><h3>${escapeHTML(art.title)}</h3><p>${escapeHTML(art.artist)}${art.collection ? ` · ${escapeHTML(art.collection)}` : ''} · <a href="${escapeHTML(art.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(art.license)}</a></p><a href="${escapeHTML(art.source)}" target="_blank" rel="noopener noreferrer">Original artwork ↗</a><small>${escapeHTML(art.changes)}</small></article>`).join('')}
-    <article><h3>Lorc · Game-icons.net</h3><p>Hunting Horn emblem.</p><p><a href="https://game-icons.net/1x1/lorc/hunting-horn.html" target="_blank" rel="noopener noreferrer">Original icon ↗</a> · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a></p><small>White icon on transparent background, tinted with CSS.</small></article>
-    <p class="heros-call-legal">Hero’s Call is an independent interface module, not affiliated with Nimble Co. or Origin Studios. Rules, choices, and native compendium artwork come from your installed Nimble system and packs. Artwork licenses and source details are included in the module folder.</p>`);
-  const dialog = modal('Art & credits', content, owner);
+    <p class="heros-call-eyebrow">${htmlCopy('ui.credits.eyebrow')}</p>
+    <p>${htmlCopy('ui.credits.introduction')}</p>
+    <p>${htmlCopy('ui.credits.licenses')}</p>
+    ${ALL_ARTWORK.map(art => `<article data-art-credit="${escapeHTML(art.id)}"><h3>${escapeHTML(art.title)}</h3><p>${escapeHTML(art.artist)}${art.collection ? ` · ${escapeHTML(art.collection)}` : ''} · <a href="${escapeHTML(art.licenseUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(art.license)}</a></p><a href="${escapeHTML(art.source)}" target="_blank" rel="noopener noreferrer">${htmlCopy('ui.credits.originalArtwork')}</a><small>${escapeHTML(art.changes)}</small></article>`).join('')}
+    <article><h3>Lorc · Game-icons.net</h3><p>${htmlCopy('ui.credits.emblem')}</p><p><a href="https://game-icons.net/1x1/lorc/hunting-horn.html" target="_blank" rel="noopener noreferrer">${htmlCopy('ui.credits.originalIcon')}</a> · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a></p><small>${htmlCopy('ui.credits.emblemChanges')}</small></article>
+    <p class="heros-call-legal">${htmlCopy('ui.credits.independence')}</p>`);
+  const dialog = modal(copy('ui.common.credits'), content, owner);
   const target = [...content.querySelectorAll('[data-art-credit]')].find(node => node.dataset.artCredit === artId);
   if(target) target.scrollIntoView({block:'center'});
   return dialog;
@@ -65,10 +64,10 @@ export function showCredits(owner, artId) {
 
 function gallery(state) {
   const content = el('div', 'heros-call-gallery-content');
-  content.append(el('p', 'heros-call-gallery-note', 'Choose an illustration to use as your actor and token portrait. Keeping automatic art follows your choices in this creator and leaves the actor’s default portrait to Nimble.'));
+  content.append(el('p', 'heros-call-gallery-note', htmlCopy('ui.gallery.introduction')));
   const grid = el('div', 'heros-call-gallery');
   let dialog;
-  const none = el('button', 'heros-call-portrait-option heros-call-no-portrait', 'Keep automatic art');
+  const none = el('button', 'heros-call-portrait-option heros-call-no-portrait', htmlCopy('ui.gallery.automatic'));
   none.type = 'button';
   none.setAttribute('aria-pressed',String(!state.portrait));
   none.addEventListener('click', () => { state.portrait = null; updatePortrait(state); dialog.close(); });
@@ -79,7 +78,7 @@ function gallery(state) {
   for (const art of choices) {
     const button = el('button', 'heros-call-portrait-option');
     button.type = 'button';
-    button.setAttribute('aria-label', `Choose ${art.subject}`);
+    button.setAttribute('aria-label', copy('ui.gallery.chooseLabel', {subject: art.subject}));
     button.setAttribute('aria-pressed', String(state.portrait === art.id));
     const img = el('img', ''); img.src = art.image; img.alt = art.subject; img.loading = 'lazy';
     const caption = el('span', ''); caption.textContent = art.subject;
@@ -88,8 +87,8 @@ function gallery(state) {
     button.addEventListener('click', () => { state.portrait = art.id; updatePortrait(state); dialog.close(); });
     grid.append(button);
   }
-  content.append(grid, el('p', 'heros-call-gallery-note', 'Each portrait keeps its own artist credit and Creative Commons or GPL license. See Art & credits for sources. Portrait selection does not change your character’s rules or ancestry.'));
-  dialog = modal('Choose your portrait', content, state.root);
+  content.append(grid, el('p', 'heros-call-gallery-note', htmlCopy('ui.gallery.licenseNote')));
+  dialog = modal(copy('ui.gallery.title'), content, state.root);
 }
 
 function updatePortrait(state) {
@@ -106,13 +105,13 @@ function updatePortrait(state) {
   state.aside.querySelector('.heros-call-portrait-credit').hidden = !showPortrait;
   const scene=chapterArtFor(state);
   state.root.dataset.herosCallArtKind=scene.chapterArt?scene.kind:'hero';
-  text(state.aside,'.heros-call-hero-meta .heros-call-eyebrow',scene.chapterArt?'YOUR STORY · '+CHAPTERS[state.chapter].label.toUpperCase():'LEVEL 1 · YOUR HERO');
-  text(state.aside,'.heros-call-hero-name',scene.chapterArt?scene.subject:(state.nameInput.value.trim() || 'A hero, unwritten'));
+  text(state.aside,'.heros-call-hero-meta .heros-call-eyebrow',scene.chapterArt?copy('ui.portrait.chapterLabel', {chapter: CHAPTERS[state.chapter].label.toUpperCase()}):copy('ui.portrait.heroLabel'));
+  text(state.aside,'.heros-call-hero-name',scene.chapterArt?scene.subject:(state.nameInput.value.trim() || copy('ui.portrait.unnamed')));
   const identities=['0','1a','2'].map(id=>id==='1a'?selectedAncestryLabel(state):state.body.querySelector(`[id$="-stage-${id}"] .nimble-card[data-card-option="non-clickable"] .nimble-card__title`)?.textContent.trim()).filter(Boolean);
-  text(state.aside,'.heros-call-hero-origin',identities.join(' · ') || 'Your legend begins with a choice.');
+  text(state.aside,'.heros-call-hero-origin',identities.join(' · ') || copy('ui.portrait.originHint'));
   const button=state.aside.querySelector('.heros-call-portrait-button');
-  button.textContent=art?'Change final portrait ↗':'Choose portrait for your hero ↗';
-  button.title=state.chapter===8?'Portrait for your actor and token':'Your chosen portrait appears in the final review. Chapter artwork follows your choices.';
+  button.textContent=art?copy('ui.portrait.change'):copy('ui.portrait.choose');
+  button.title=state.chapter===8?copy('ui.portrait.finalTooltip'):copy('ui.portrait.chapterTooltip');
   state.hero.set(scene);
 }
 
@@ -139,7 +138,7 @@ async function renderCardDetails(state, card) {
     target.append(...copy.childNodes);
   }
   if (target.textContent.trim()) return;
-  target.textContent = 'Loading details…';
+  target.textContent = copy('ui.details.loading');
   const section = card.closest('section[id]');
   const group = groupForSection(section?.id);
   const method = section?.id.endsWith('-stage-1b') ? 'prepareAncestryBonusOptions' : {0:'prepareClassOptions',1:'prepareAncestryOptions',2:'prepareBackgroundOptions'}[group];
@@ -159,9 +158,9 @@ async function renderCardDetails(state, card) {
     const html = await foundry.applications.ux.TextEditor.implementation.enrichHTML(doc?.system?.description || '', {secrets:game.user.isGM,relativeTo:doc});
     if (state.previewCard !== card || !state.root.isConnected) return;
     target.innerHTML = html;
-    if (!target.textContent.trim()) target.textContent = 'This option has no description. Use its native controls to see its choices.';
+    if (!target.textContent.trim()) target.textContent = copy('ui.details.empty');
   } catch {
-    if(state.previewCard === card && state.root.isConnected) target.textContent = 'Use this option’s native controls or tooltip to inspect its choices.';
+    if(state.previewCard === card && state.root.isConnected) target.textContent = copy('ui.details.unavailable');
   }
 }
 
@@ -176,13 +175,13 @@ function sync(state) {
     state.previewCard = null;
     state.previewAncestry = null;
     state.previewBackground = null;
-    text(state.aside, '.heros-call-detail-title', 'Your next choice');
-    text(state.aside, '.heros-call-detail-body', 'Hover or focus a choice to read more. Select a card to continue your story.');
+    text(state.aside, '.heros-call-detail-title', copy('ui.details.title'));
+    text(state.aside, '.heros-call-detail-body', copy('ui.details.hint'));
   }
   const chapter = CHAPTERS[state.chapter];
   text(state.banner, '.heros-call-chapter-title', chapter.title);
   text(state.banner, '.heros-call-chapter-subtitle', chapter.description);
-  text(state.banner, '.heros-call-chapter-count', `CHAPTER ${String(state.chapter + 1).padStart(2, '0')} / 09`);
+  text(state.banner, '.heros-call-chapter-count', copy('ui.shell.chapterCount', {number: String(state.chapter + 1).padStart(2, '0'), total: String(CHAPTERS.length).padStart(2, '0')}));
   state.rail.querySelectorAll('[data-chapter]').forEach(button => {
     const index = Number(button.dataset.chapter);
     button.disabled = index > nativeStage;
@@ -212,7 +211,7 @@ function sync(state) {
   // a complete build by default; Classic view retains that native escape hatch.
   if (submit) {
     submit.disabled = nativeStage !== 8 || !state.nameInput.value.trim() || state.submitting;
-    submit.title = nativeStage !== 8 ? 'Complete every chapter to create your hero.' : !state.nameInput.value.trim() ? 'Give your hero a name.' : 'Create your Nimble hero';
+    submit.title = nativeStage !== 8 ? copy('ui.submit.incomplete') : !state.nameInput.value.trim() ? copy('ui.submit.nameRequired') : copy('ui.submit.ready');
   }
 }
 
@@ -229,23 +228,24 @@ function enhance(app, root) {
   state.originalPosition = {...app.position};
   state.originalSubmit = app.submitCharacterCreation;
 
-  const banner = state.banner = el('header', 'heros-call-banner', `<div class="heros-call-brand" aria-label="Hero’s Call — Character Creation for Nimble"><img src="${BASE}/assets/heros-call.svg" alt=""><div><span class="heros-call-eyebrow">FOR NIMBLE</span><strong>Hero’s Call</strong></div></div><div class="heros-call-chapter-heading"><span class="heros-call-chapter-count heros-call-eyebrow"></span><h1 class="heros-call-chapter-title"></h1><p class="heros-call-chapter-subtitle"></p></div><div class="heros-call-banner-actions"><button type="button" data-heros-call-action="credits">Art & credits</button><button type="button" data-heros-call-action="classic">Classic view</button></div>`);
-  const rail = state.rail = el('nav', 'heros-call-chapters', '<p class="heros-call-eyebrow">YOUR STORY</p>');
-  rail.setAttribute('aria-label', 'Character creation chapters');
+  const banner = state.banner = el('header', 'heros-call-banner', `<div class="heros-call-brand"><img src="${BASE}/assets/heros-call.svg" alt=""><div><span class="heros-call-eyebrow">${htmlCopy('ui.shell.system')}</span><strong>${htmlCopy('ui.shell.name')}</strong></div></div><div class="heros-call-chapter-heading"><span class="heros-call-chapter-count heros-call-eyebrow"></span><h1 class="heros-call-chapter-title"></h1><p class="heros-call-chapter-subtitle"></p></div><div class="heros-call-banner-actions"><button type="button" data-heros-call-action="credits">${htmlCopy('ui.common.credits')}</button><button type="button" data-heros-call-action="classic">${htmlCopy('ui.shell.classic')}</button></div>`);
+  banner.querySelector('.heros-call-brand').setAttribute('aria-label', copy('ui.shell.brandLabel'));
+  const rail = state.rail = el('nav', 'heros-call-chapters', `<p class="heros-call-eyebrow">${htmlCopy('ui.shell.story')}</p>`);
+  rail.setAttribute('aria-label', copy('ui.shell.chaptersLabel'));
   CHAPTERS.forEach((chapter, index) => {
-    const button = el('button', 'heros-call-chapter', `<span class="heros-call-chapter-number">${String(index+1).padStart(2,'0')}</span><span>${chapter.label}</span><span class="heros-call-chapter-check" aria-hidden="true">✓</span>`);
+    const button = el('button', 'heros-call-chapter', `<span class="heros-call-chapter-number">${String(index+1).padStart(2,'0')}</span><span>${escapeHTML(chapter.label)}</span><span class="heros-call-chapter-check" aria-hidden="true">✓</span>`);
     button.type = 'button'; button.dataset.chapter = index;
-    button.setAttribute('aria-label', `Chapter ${index + 1}: ${chapter.label}`);
+    button.setAttribute('aria-label', copy('ui.shell.chapterLabel', {number: index + 1, label: chapter.label}));
     button.title = chapter.label;
     button.addEventListener('click', () => {state.chapter = index; state.body.scrollTop = 0; sync(state);});
     rail.append(button);
   });
-  rail.append(el('div', 'heros-call-rail-note', '<span class="heros-call-spark" aria-hidden="true">✧</span><p>Adventure calls.<br>Who will you become?</p>'));
-  const aside = state.aside = el('aside', 'heros-call-aside', `<div class="heros-call-portrait-wrap"><img class="heros-call-hero-portrait" alt=""><button type="button" class="heros-call-portrait-button">Choose portrait <span aria-hidden="true">↗</span></button><button type="button" class="heros-call-portrait-credit"></button></div><div class="heros-call-hero-meta"><span class="heros-call-eyebrow">LEVEL 1 · YOUR HERO</span><h2 class="heros-call-hero-name"></h2><p class="heros-call-hero-origin"></p></div><div class="heros-call-detail"><span class="heros-call-eyebrow">THE DETAILS</span><h3 class="heros-call-detail-title">Your next choice</h3><div class="heros-call-detail-body">Hover or focus a choice to read more. Select a card to continue your story.</div></div>`);
+  rail.append(el('div', 'heros-call-rail-note', `<span class="heros-call-spark" aria-hidden="true">✧</span><p>${htmlCopy('ui.shell.railFirstLine')}<br>${htmlCopy('ui.shell.railSecondLine')}</p>`));
+  const aside = state.aside = el('aside', 'heros-call-aside', `<div class="heros-call-portrait-wrap"><img class="heros-call-hero-portrait" alt=""><button type="button" class="heros-call-portrait-button">${htmlCopy('ui.portrait.shortChoose')} <span aria-hidden="true">↗</span></button><button type="button" class="heros-call-portrait-credit"></button></div><div class="heros-call-hero-meta"><span class="heros-call-eyebrow">${htmlCopy('ui.portrait.heroLabel')}</span><h2 class="heros-call-hero-name"></h2><p class="heros-call-hero-origin"></p></div><div class="heros-call-detail"><span class="heros-call-eyebrow">${htmlCopy('ui.details.eyebrow')}</span><h3 class="heros-call-detail-title">${htmlCopy('ui.details.title')}</h3><div class="heros-call-detail-body">${htmlCopy('ui.details.hint')}</div></div>`);
   state.refreshArt=()=>updatePortrait(state);
   state.hero = createHero({openCredits:art=>showCredits(root,art?.id)});
   aside.querySelector('.heros-call-portrait-wrap').prepend(state.hero.element);
-  aside.setAttribute('aria-label','Character preview and choice details');
+  aside.setAttribute('aria-label',copy('ui.portrait.regionLabel'));
   aside.querySelector('.heros-call-portrait-button').addEventListener('click', () => gallery(state));
   aside.querySelector('.heros-call-portrait-credit').addEventListener('click', () => showCredits(root,state.portrait));
   banner.querySelector('[data-heros-call-action="credits"]').addEventListener('click', () => showCredits(root));
@@ -260,7 +260,7 @@ function enhance(app, root) {
       const content=el('div','heros-call-credits heros-call-class-rules');
       const description=state.aside.querySelector('.heros-call-detail-body').cloneNode(true);
       content.append(description);
-      modal(card.querySelector('.nimble-card__title')?.textContent.trim() || 'Choice details',content,root);
+      modal(card.querySelector('.nimble-card__title')?.textContent.trim() || copy('ui.details.modalTitle'),content,root);
   };
   state.calling = createCalling(state, {openCredits: art => showCredits(root,art?.id),openRules});
   state.journey = createJourney(state,{previewCard,openRules,navigate:chapter=>{state.chapter=chapter;sync(state);}});
@@ -311,7 +311,7 @@ function enhance(app, root) {
       actor.updateSource({img:portrait.image, 'prototypeToken.texture.src':portrait.image, [`flags.${ID}.portraitCredit`]:{title:portrait.title,author:portrait.artist,license:portrait.license,source:portrait.source}});
     }) : null;
     try { return await state.originalSubmit.call(this, results); }
-    catch (error) { console.error(`${ID} | Character creation failed`, error); ui.notifications.error('Character creation did not finish. Check the Actors list before retrying; a partial hero may exist.'); }
+    catch (error) { console.error(`${ID} | Character creation failed`, error); ui.notifications.error(copy('ui.submit.failed')); }
     finally { if (hook !== null) Hooks.off('preCreateActor', hook); state.submitting = false; if(root.isConnected) sync(state); }
   };
 
@@ -345,13 +345,13 @@ function cleanup(id, restore = false) {
 }
 
 Hooks.once('init', () => {
-  game.settings.register(ID, 'enabled', {name:'Hero’s Call character creator',hint:'Use Hero’s Call when opening Nimble’s character creation helper. Reopen the helper after changing this setting.',scope:'client',config:true,type:Boolean,default:true});
+  game.settings.register(ID, 'enabled', {name:copy('ui.settings.name'),hint:copy('ui.settings.hint'),scope:'client',config:true,type:Boolean,default:true});
   game.modules.get(ID).api = {open:() => CONFIG.Actor.documentClass.createDialog(),credits:() => showCredits()};
 });
 Hooks.on('renderApplicationV2', (app, element) => {
   if(game.system.id !== 'nimble' || !game.settings.get(ID,'enabled')) return;
   const root = element instanceof HTMLElement ? element : app.element;
   if(!root) return;
-  try {enhance(app, root);} catch(error) {cleanup(app.id, true); console.error(`${ID} | Theme could not be applied`,error); ui.notifications.warn('Hero’s Call could not style this creator. The native creator remains available.');}
+  try {enhance(app, root);} catch(error) {cleanup(app.id, true); console.error(`${ID} | Theme could not be applied`,error); ui.notifications.warn(copy('ui.settings.themeFailed'));}
 });
 Hooks.on('closeApplicationV2', app => cleanup(app.id));

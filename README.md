@@ -143,6 +143,12 @@ or custom-art configuration in this version.
 
 ## Development and validation
 
+To replace the interface wording, start with the
+[copy authoring guide](docs/COPY-AUTHORING.md) and
+[complete review checklist](docs/COPY-INVENTORY.md). Class introductions, chapter
+prompts, UI labels and artwork descriptions live in `content/` and are imported
+directly; edits appear after refreshing Foundry and reopening the creator.
+
 Use Node.js 22 or later and Python 3.10 or later. There are no dependencies to
 install. Run these commands from a source checkout containing `module.json`
 and `package.json` (development tools are not included in the installation ZIP):
@@ -153,7 +159,7 @@ npm run build
 ```
 
 The build validates the manifest, JavaScript syntax, artwork inventory, hashes,
-license records and publication boundary before creating the ZIP, a matching
+license records, editable-copy keys/placeholders and publication boundary before creating the ZIP, a matching
 manifest and checksums in `dist/`. `npm run check` runs validation without building.
 Only the files inside this module folder belong in the public repository.
 

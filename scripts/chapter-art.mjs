@@ -1,9 +1,10 @@
+import {withArtworkCopy} from './copy.mjs';
+
 // Separately licensed character and chapter illustrations.
 export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "sitting-elf",
     "title": "Sitting Elf",
-    "subject": "An elf resting beneath the trees",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/sitting-elf.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Sitting%20Elf/Sitting%20Elf.png",
@@ -11,14 +12,12 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "eb974cbe4d396aa8d360c7b31ced02bdbd2ee1fb9d7bfe954cce9a84056e4c96",
     "portrait": true
   },
   {
     "id": "jump",
     "title": "Jump",
-    "subject": "A nimble leap through twisting branches",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/jump.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Jump/Jump.png",
@@ -26,13 +25,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "f14ae05d964fe83fab1873c7e098af8b55e05b1766bc8ca32e6c533cfdf320ce"
   },
   {
     "id": "whirlwind",
     "title": "Whirlwind",
-    "subject": "Spellcasters commanding a whirlwind",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/whirlwind.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Whirlwind/Whirlwind.png",
@@ -40,13 +37,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "be325527e16409c7cbe90a88073d7f33f1045cf34b2dde7db037035e6c1468cf"
   },
   {
     "id": "medical-attention",
     "title": "Medical Attention",
-    "subject": "Bandages and a blade after a difficult encounter",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/medical-attention.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Medical%20Attention/Medical%20Attention.png",
@@ -54,13 +49,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "a90885e3f2a37121f2f69821f6959caca2a39f3d0a6e0381576222aa901a1507"
   },
   {
     "id": "squad-leader",
     "title": "Squad Leader",
-    "subject": "A leader rallying companions",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/squad-leader.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Squad%20Leader/Squad%20Leader.png",
@@ -68,13 +61,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "f0b6ca1a784f216d4bd1263b389dbb78d86dc976cf6814e605304e9ee7ca8800"
   },
   {
     "id": "dryads-flute",
     "title": "Dryads Flute",
-    "subject": "A flute calling to the woodland",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/dryads-flute.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Dryads%20Flute/Dryads%20Flute.png",
@@ -82,13 +73,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "013e018d1f7cd3e0ef2d8ab409c28c459de3393aec4927263db8b56487517e37"
   },
   {
     "id": "nourished-flower",
     "title": "Nourished Flower",
-    "subject": "A ranger contemplating a rose",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/nourished-flower.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Nourished%20Flower/Nourished%20Flower.png",
@@ -96,13 +85,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "2bea146eb020c091e96140a5f33576bd0efe2721fd19e9808d2c41d4f7a39572"
   },
   {
     "id": "elven-forest",
     "title": "Elven Forest",
-    "subject": "An ancient woodland and its small inhabitants",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/chapters/elven-forest.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Elven%20Forest/Elven%20Forest.png",
@@ -110,13 +97,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "4cd7055233a933da98d505a5fb53eac4fb07a094653f74782cbb38a540feac8f"
   },
   {
     "id": "fairy-druid",
     "title": "Druid",
-    "subject": "A winged druid tending a flower",
     "artist": "Kathrin Polikeit",
     "image": "modules/heros-call/assets/chapters/fairy-druid.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Druid/Druid.png",
@@ -124,13 +109,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "5b751eecaecb1dc06aa14141612a92aaeebfe6b7a3515f52800961f62501e082"
   },
   {
     "id": "female-elf-caster",
     "title": "Female Elf Caster",
-    "subject": "An elven spellcaster",
     "artist": "Kathrin Polikeit",
     "image": "modules/heros-call/assets/chapters/female-elf-caster.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Female%20Elf%20Caster/Female%20Elf%20Caster.png",
@@ -138,13 +121,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "354f6409cd787da720c0614252ddd12b7333f87340034a8a2e6b033b41f705d9"
   },
   {
     "id": "scroll-raider",
     "title": "Scroll Raider",
-    "subject": "An adventurer studying a scroll, maps and coins",
     "artist": "Kaitlyn Peavler",
     "image": "modules/heros-call/assets/chapters/scroll-raider.png",
     "source": "https://github.com/hurleyit/prismatic_art/blob/master/Kaitlyn%20Peavler/Conquering%20Corsairs/scroll_raider.png",
@@ -152,13 +133,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "collection": "Conquering Corsairs / Prismatic Art Collection",
     "kind": "scene",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "f2d8ec36e8f4dbf9ca9a46e15de5035126b87068005ca21bcb8ca2e576474a96"
   },
   {
     "id": "warrior-study",
     "title": "Warrior",
-    "subject": "A warrior with a curved sword and elaborate armour",
     "artist": "Sarah Carney",
     "image": "modules/heros-call/assets/chapters/warrior-study.jpg",
     "source": "https://github.com/hurleyit/prismatic_art/blob/master/Sarah%20Carney/WarriorBIG%20%281%29.jpg",
@@ -166,13 +145,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "collection": "Prismatic Art Collection",
     "kind": "painting",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "6a300543d4c5a7689937e70ec9a6740dbefa8731eb0fa18d6918b1a53a360ad9"
   },
   {
     "id": "wizard-tower",
     "title": "Wizard Tower",
-    "subject": "A tower above a green valley at sunset",
     "artist": "JAP",
     "image": "modules/heros-call/assets/chapters/wizard-tower.png",
     "source": "https://opengameart.org/content/oil-painting-landscapes",
@@ -180,13 +157,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
     "collection": "OpenGameArt",
     "kind": "landscape",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "24fcf2163f514ac7ad860f008d3887d84624bf153398fe3ab09f8c7f927a7a7f"
   },
   {
     "id": "island-cove",
     "title": "Island Cove",
-    "subject": "A sheltered cove on a stormy sea",
     "artist": "Eon Cire",
     "image": "modules/heros-call/assets/chapters/island-cove.jpg",
     "source": "https://opengameart.org/content/concept-art-studies-bundle-1",
@@ -194,13 +169,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
     "collection": "Concept Art Studies Bundle 1",
     "kind": "landscape",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "9bf0e3152dbc50ba15db207d26d8f2e26cd2aff11fa69cf75a950f519e66c0b6"
   },
   {
     "id": "skull-lodge",
     "title": "Elk Skull Lodge",
-    "subject": "A strange lodge in a misty wood",
     "artist": "Eon Cire",
     "image": "modules/heros-call/assets/chapters/skull-lodge.jpg",
     "source": "https://opengameart.org/content/concept-art-studies-bundle-1",
@@ -208,13 +181,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
     "collection": "Concept Art Studies Bundle 1",
     "kind": "landscape",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "72384d93d889568ba45162744eee44f7a43f77b81564e3593ce3963c1c858e54"
   },
   {
     "id": "innkeeper",
     "title": "Innkeeper",
-    "subject": "A welcoming human innkeeper carrying ale",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/innkeeper.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Innkeeper/Innkeeper.png",
@@ -222,14 +193,12 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "64946149803ffc7013105e3216da078404dc575356a2cea4740b518c0dca2de9",
     "portrait": true
   },
   {
     "id": "smith",
     "title": "Smith",
-    "subject": "A smith at the anvil",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/smith.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Smith/Smith.png",
@@ -237,13 +206,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "771b77f6b210b9751b701592e5564cb62be370c2d63118c75a2db05f65fe8f2b"
   },
   {
     "id": "goblin-salvager",
     "title": "Goblin Scrap Gatherer",
-    "subject": "A goblin gathering useful scraps into a cart",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/goblin-salvager.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Goblin%20Scrap%20Gatherer/Goblin%20Scrap%20Gatherer.png",
@@ -251,14 +218,12 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "c4c023d01de08637ad22836837575b77c3e7df848423e74fe85942be6633c701",
     "portrait": true
   },
   {
     "id": "reflection",
     "title": "Bilocation",
-    "subject": "An elf and a changed reflection beneath sun and moon",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/reflection.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Bilocation/Bilocation.png",
@@ -266,13 +231,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "643a1819681780ced125b53978fb41436d1a41f78cc3f9d8055f436cc180a55a"
   },
   {
     "id": "botanist",
     "title": "Botanist",
-    "subject": "A woodland gardener tending plants beside a wolf",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/botanist.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Botanist/Botanist.png",
@@ -280,13 +243,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "e7f586fc9defb30a13c0f2448f239e2a7cbf1ee46f17a27dfe2d98a55d549c42"
   },
   {
     "id": "gold-vein",
     "title": "Gold Vein Find",
-    "subject": "A pickaxe and lantern beside gold-bearing rock",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/gold-vein.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Gold%20Vein%20Find/Gold%20Vein%20Find.png",
@@ -294,13 +255,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "80d9a4c6a5bbd0f3b7ee090bc068dae1c8845eed015a4db4f66b15e62a1fa89e"
   },
   {
     "id": "goblin-wind",
     "title": "Goblin Against The Wind",
-    "subject": "A goblin bracing against a fierce wind",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/goblin-wind.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Goblin%20Against%20The%20Wind/Goblin%20Against%20The%20Wind.png",
@@ -308,13 +267,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "da6181a1d1bae2696e593c978a7cbcc33a0ca3703b3eb1d5e2c3ad8b497cc0e5"
   },
   {
     "id": "wight",
     "title": "Wight",
-    "subject": "A hooded undead figure",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/wight.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Wight/Wight.png",
@@ -322,13 +279,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "2df1b53db4943598472be031b2a43edd66c67646d828c030603ca04ddfb3fa0c"
   },
   {
     "id": "potion-making",
     "title": "Potion Making",
-    "subject": "A scholar preparing a potion beside a book",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/potion-making.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Potion%20Making/Potion%20Making.png",
@@ -336,13 +291,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "fcb4d9e78e843c40adb9493a43e960d61cdff00d458d94909c6240741a2cb153"
   },
   {
     "id": "armory",
     "title": "Armory",
-    "subject": "Weapons and armour prepared for a journey",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/armory.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Armory/Armory.png",
@@ -350,13 +303,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "1e3187cfd8b2f3a551b9a20314acc99c11a8e67d42795230c38d866bad01e873"
   },
   {
     "id": "conscript",
     "title": "Conscript",
-    "subject": "A soldier standing ready with a spear",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/conscript.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Conscript/Conscript.png",
@@ -364,13 +315,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "41683cd67c7d701797e61357e64a5ea7663b5e1e06eb81e48a585c35337a5b50"
   },
   {
     "id": "restless-spirits",
     "title": "Spiritual Revolt",
-    "subject": "Restless spirits rising from a graveyard",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/restless-spirits.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Spiritual%20Revolt/Spiritual%20Revolt.png",
@@ -378,13 +327,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "f37ed37a4d561001a3656039de82a06d669b6ab944b340d2b53394a848962a69"
   },
   {
     "id": "condemned",
     "title": "Condemn",
-    "subject": "A warning sign, ravens and a ruined tower",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/condemned.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Condemn/Condemn.png",
@@ -392,13 +339,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "74ae4f9d094c752d4df388807238f833dfea7ebd8b46e02d71fcc344702e6d6e"
   },
   {
     "id": "elven-coat",
     "title": "Elven Coat",
-    "subject": "A ranger concealed by a cloak of leaves",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/elven-coat.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Elven%20Coat/Elven%20Coat.png",
@@ -406,13 +351,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "502ccb64c9e6954571c20944685c415f371cefc2739ca23c6dadf03a6ce1b8e8"
   },
   {
     "id": "satyr",
     "title": "Satyr",
-    "subject": "A horned, goat-legged woodland musician",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/satyr.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Satyr/Satyr.png",
@@ -420,14 +363,12 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "b2d55a71d11f55225a4e2e8ac9d435c4e0cd02f2c1282f5d460754c66e10e65a",
     "portrait": true
   },
   {
     "id": "cutpurse",
     "title": "Cutpurse Imp",
-    "subject": "A small pickpocket reaching for a purse",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/cutpurse.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Cutpurse%20Imp/Cutpurse%20Imp.png",
@@ -435,13 +376,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "d7dfc4e67d79acefbba49bc492b8601ff30a4d57eb0c4ae3650c867f1d415451"
   },
   {
     "id": "clockwork",
     "title": "Clockwork",
-    "subject": "Interlocking gears and an intricate mechanism",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/clockwork.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Clockwork/Clockwork.png",
@@ -449,13 +388,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "572ad980b8ca150727f9def79d1327df1015ca67b9800f204b13d4db9798c5cc"
   },
   {
     "id": "street-scout",
     "title": "Vulture Assassin",
-    "subject": "A hooded observer moving through the streets",
     "artist": "Santiago Iborra",
     "image": "modules/heros-call/assets/curated/street-scout.png",
     "source": "https://github.com/wtactics/art/blob/master/WT/Vulture%20Assassin/Vulture%20Assassin.png",
@@ -463,13 +400,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Arcmage / WTactics",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "5485ceb0499fe9e89073ab3122762239555df87c2d7fcbac5b46fd530b29d5cf"
   },
   {
     "id": "dwarf-explorer",
     "title": "Dwarvish Explorer",
-    "subject": "A stocky dwarf with a travelling pack and axe",
     "artist": "Phil Barber (thespaceinvader)",
     "image": "modules/heros-call/assets/curated/dwarf-explorer.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/dwarves/explorer.png",
@@ -477,7 +412,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "eaac52839fab140828acf7ac7095c3d8aa676e747d33785460d777dad5b9ef11",
     "evidence": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/dwarves/explorer.webp",
     "portrait": true
@@ -485,7 +419,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "orc-warrior",
     "title": "Orcish Grunt",
-    "subject": "A tusked orc in leather armour",
     "artist": "Emilien Rotival (LordBob)",
     "image": "modules/heros-call/assets/curated/orc-warrior.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/orcs/grunt.png",
@@ -493,7 +426,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "3a5b52b786fb799109a7f92dfec7282170e6b39c59053a501f5608e994374afb",
     "evidence": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/orcs/grunt.webp",
     "portrait": true
@@ -501,7 +433,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "scaled-augur",
     "title": "Saurian Augur",
-    "subject": "A small reptilian spellcaster with a long tail",
     "artist": "Phil Barber (thespaceinvader)",
     "image": "modules/heros-call/assets/curated/scaled-augur.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/saurians/augur.png",
@@ -509,7 +440,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "9fb2d9ccf8a0285002b40f390491594e889e6fa2ffb3554fdaff7d680d924869",
     "evidence": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/saurians/augur.webp",
     "portrait": true
@@ -517,7 +447,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "living-tree",
     "title": "Wose",
-    "subject": "A living tree with a face, limbs and leafy branches",
     "artist": "Emilien Rotival (LordBob)",
     "image": "modules/heros-call/assets/curated/living-tree.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/woses/wose.png",
@@ -525,7 +454,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "fd9d2d7fc5097d2b615ab8b91d9615c03ac3c31e6a3a4d0ee896c3ee06d3a6fe",
     "evidence": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/woses/wose.webp",
     "portrait": true
@@ -533,7 +461,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "living-ooze",
     "title": "Giant Mudcrawler",
-    "subject": "A fluid, animate body of mud and ooze",
     "artist": "Kathrin Polikeit (Kitty)",
     "image": "modules/heros-call/assets/curated/living-ooze.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/monsters/giant-mudcrawler.png",
@@ -541,7 +468,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "4752929adb7dc49a703fb80a14694681f892d813bd2752ff88e24919ef80df91",
     "evidence": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/giant-mudcrawler.webp",
     "portrait": true
@@ -549,7 +475,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "living-flame",
     "title": "Fire Guardian",
-    "subject": "A humanoid body flickering with elemental fire",
     "artist": "Emilien Rotival (LordBob)",
     "image": "modules/heros-call/assets/curated/living-flame.png",
     "source": "https://github.com/wesnoth/wesnoth/blob/1.16/data/core/images/portraits/monsters/fire_guardian.png",
@@ -557,7 +482,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "65c3ebefc18e5e8cee9da1c954a1ea5e14e1bbeb1677cf87bd75b27a5a085583",
     "evidence": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/fire_guardian.webp",
     "portrait": true
@@ -565,7 +489,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "planar-jinn",
     "title": "Jinn",
-    "subject": "An otherworldly figure dissolving into mist",
     "artist": "Emilien Rotival (LordBob)",
     "image": "modules/heros-call/assets/curated/planar-jinn.webp",
     "source": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/jinn.webp",
@@ -573,14 +496,12 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "The Battle for Wesnoth",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "7905d4abec2fb9c5cd4d073621505c200ff7cb94994340bc3b8bb2e6039928ba",
     "portrait": true
   },
   {
     "id": "dragon-adventurer",
     "title": "Dragon like character design",
-    "subject": "A horned, scaled dragon adventurer wearing travelling armour",
     "artist": "hcjrArt",
     "image": "modules/heros-call/assets/curated/dragon-adventurer.png",
     "source": "https://opengameart.org/content/dragon-like-character-design",
@@ -588,14 +509,12 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
     "collection": "OpenGameArt",
     "kind": "painting",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "6f228b4f140d9039fb59f77a7274bd1b62a6f0d1648959f86ddb2af5d3696bf8",
     "portrait": true
   },
   {
     "id": "rat-knight",
     "title": "Rat Knight — Rat People",
-    "subject": "An armoured ratfolk adventurer with a long tail",
     "artist": "Morgan Strauss (nubux)",
     "image": "modules/heros-call/assets/curated/rat-knight.png",
     "source": "https://opengameart.org/content/rat-people",
@@ -603,14 +522,12 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
     "collection": "OpenGameArt",
     "kind": "vignette",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "59d8327cf4211a6a546f96fabc2f9c60feee5c2afd6ca6ca6bdb652a4de65ad7",
     "portrait": true
   },
   {
     "id": "feathered-traveller",
     "title": "Scavenger",
-    "subject": "A feathered birdlike traveller with a beak, wings and talons",
     "artist": "AshiRox",
     "image": "modules/heros-call/assets/curated/feathered-traveller.jpg",
     "source": "https://github.com/FreezingMoon/AncientBeast/blob/master/assets/units/artwork/Scavenger.jpg",
@@ -618,7 +535,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
     "collection": "Ancient Beast",
     "kind": "painting",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "9dfce1db1012ff8c38a46a4f65653edcfae212d765df33f7faffb54354a388a2",
     "evidence": "https://github.com/FreezingMoon/AncientBeast-Website/blob/master/multimedia/artwork/Scavenger_by_Ashirox.jpg",
     "portrait": true
@@ -626,7 +542,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
   {
     "id": "acrobat-practice",
     "title": "Martial Landscape",
-    "subject": "Unarmed acrobats practicing among bamboo",
     "artist": "Amy Clare",
     "image": "modules/heros-call/assets/curated/acrobat-practice.jpg",
     "source": "https://github.com/hurleyit/prismatic_art/blob/master/Amy%20Clare/martial_landscape_01.jpg",
@@ -634,13 +549,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "collection": "Prismatic Art Collection",
     "kind": "ink",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "f7b46a4e30572fdaf44d2bd2845856755f1b896908fbded4a5a752201d3bf7cc"
   },
   {
     "id": "aristocrat",
     "title": "Aristocrat",
-    "subject": "An aristocrat in fine clothes holding a decorative fan",
     "artist": "Kaitlyn Peavler",
     "image": "modules/heros-call/assets/curated/aristocrat.png",
     "source": "https://github.com/hurleyit/prismatic_art/blob/master/Kaitlyn%20Peavler/Conquering%20Corsairs/aristocrat.png",
@@ -648,13 +561,11 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "collection": "Conquering Corsairs / Prismatic Art Collection",
     "kind": "scene",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "d879f5145724d3f50bd5a1a2eebececed8e416766b8733ea895e842e07e818b7"
   },
   {
     "id": "explorer",
     "title": "Explorer",
-    "subject": "An explorer releasing a bird from a ship’s lookout",
     "artist": "Kaitlyn Peavler",
     "image": "modules/heros-call/assets/curated/explorer.png",
     "source": "https://github.com/hurleyit/prismatic_art/blob/master/Kaitlyn%20Peavler/Conquering%20Corsairs/explorer.png",
@@ -662,7 +573,6 @@ export const CHAPTER_ARTWORK = Object.freeze([
     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
     "collection": "Conquering Corsairs / Prismatic Art Collection",
     "kind": "scene",
-    "changes": "Original file unchanged. Browser framing, scaling, soft-edge masks and entrance transitions only.",
     "sha256": "52fa6881e16b89b45819706a02f6c86d87021f83751c0cc784725ae5b80b911d"
   }
-]);
+].map(withArtworkCopy));

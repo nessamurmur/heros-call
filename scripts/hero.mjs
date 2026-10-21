@@ -1,3 +1,4 @@
+import {copy} from './copy.mjs';
 import {ARTWORK, CALLING_ART} from './art-credits.mjs';
 
 const BASE = 'modules/heros-call';
@@ -36,8 +37,8 @@ export function resolveHero(calling, ancestry, preview = false) {
     art, key:art?.id || 'native', matched, preview,kind:art?.kind || 'vignette',
     image:art?.image || calling?.image || `${BASE}/assets/heros-call.svg`,
     fallback:calling?.image || `${BASE}/assets/heros-call.svg`,
-    label:art?.subject || calling?.name || 'Your story begins here',
-    note:art ? `${preview ? 'Preview · ' : ''}${matched ? `${ancestry.name} ${calling.name} illustration` : `Calling illustration · ${art.ancestry} example`}` : 'Illustration from your installed content'
+    label:art?.subject || calling?.name || copy('ui.hero.fallbackLabel'),
+    note:art ? (preview ? copy('ui.hero.previewPrefix') : '') + (matched ? copy('ui.hero.matchedIllustration', {ancestry: ancestry.name, calling: calling.name}) : copy('ui.hero.callingIllustration', {ancestry: art.ancestry})) : copy('ui.hero.installedIllustration')
   };
 }
 export function selectedHero(state) {
@@ -65,8 +66,8 @@ export function createHero({compact = false, openCredits} = {}) {
     element.dataset.artKind = hero.kind || 'vignette';
     element.title = hero.explanation || '';
     note.textContent = hero.note;
-    credit.textContent = hero.art ? `${hero.art.artist} · ${hero.art.license} ↗` : hero.chapterArt ? 'Installed ancestry artwork · credits ↗' : 'Art & credits ↗';
-    credit.setAttribute('aria-label', hero.art ? `Art credits for ${hero.art.title} by ${hero.art.artist}` : 'Art & credits');
+    credit.textContent = hero.art ? `${hero.art.artist} · ${hero.art.license} ↗` : hero.chapterArt ? copy('ui.hero.installedAncestryCredits') : copy('ui.hero.creditsLink');
+    credit.setAttribute('aria-label', hero.art ? copy('ui.hero.artCreditsLabel', {title: hero.art.title, artist: hero.art.artist}) : copy('ui.common.credits'));
     // The incoming subject and credit must stay together during rapid browsing.
     img.hidden = true;
     element.classList.remove('is-entering');
@@ -74,20 +75,20 @@ export function createHero({compact = false, openCredits} = {}) {
     incoming.onload = () => {
       if (!alive || ticket !== request) return;
       img.src = incoming.src;
-      img.alt = `${hero.label}. ${hero.note}.`;
+      img.alt = copy('ui.hero.imageDescription', {label: hero.label, note: hero.note});
       img.hidden = false;
       element.classList.add('is-entering');
     };
     incoming.onerror = () => {
       if (!alive || ticket !== request) return;
       current = {...hero, art:null};
-      credit.textContent = 'Art & credits ↗';
-      credit.setAttribute('aria-label','Art & credits');
-      note.textContent = hero.fallbackNote || 'Class illustration from your installed content';
-      incoming.onerror = () => {if (alive && ticket === request) note.textContent = 'Artwork unavailable';};
+      credit.textContent = copy('ui.hero.creditsLink');
+      credit.setAttribute('aria-label',copy('ui.common.credits'));
+      note.textContent = hero.fallbackNote || copy('ui.hero.installedClassIllustration');
+      incoming.onerror = () => {if (alive && ticket === request) note.textContent = copy('ui.hero.unavailable');};
       incoming.onload = () => {
         if (!alive || ticket !== request) return;
-        img.src = incoming.src; img.alt = hero.fallbackNote || 'Illustration from your installed class'; img.hidden = false;
+        img.src = incoming.src; img.alt = hero.fallbackNote || copy('ui.hero.installedClassAlt'); img.hidden = false;
       };
       incoming.src = hero.fallback;
     };

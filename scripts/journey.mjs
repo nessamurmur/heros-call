@@ -1,3 +1,4 @@
+import {copy, htmlCopy} from './copy.mjs';
 import {CHAPTERS, groupForSection} from './model.mjs';
 import {selectedHero} from './hero.mjs';
 import {createControls} from './controls.mjs';
@@ -8,13 +9,6 @@ const node = (tag, className, value) => {
   if (value) element.textContent = value;
   return element;
 };
-const hints = [
-  'Shape the gifts of your calling.', 'Choose the gifts of your ancestry.',
-  'Finish the story that brought you here.', 'Choose your provisions to continue.',
-  'Preview an array, then choose your potential.', 'Select a modifier, then an attribute. You can also drag to assign.',
-  'Spend your skill points, then confirm your training.', 'Choose your languages, then confirm your voice.',
-  'Give your hero a name. Your adventure awaits.'
-];
 
 // This is a view of native choices. Only a deliberate confirmation invokes the
 // original card; optional branches and all complex controls remain Svelte-owned.
@@ -22,16 +16,16 @@ export function createJourney(state, {previewCard, openRules, navigate}) {
   const intro = node('header', 'heros-call-journey-intro');
   intro.innerHTML = '<span class="heros-call-eyebrow"></span><h1 class="heros-call-journey-title" tabindex="-1"></h1><p></p>';
   const element = node('section', 'heros-call-choices');
-  element.setAttribute('aria-label', 'Preview your next choice');
-  const copy = node('div', 'heros-call-choice-copy');
-  copy.innerHTML = '<h2 class="heros-call-choice-name"></h2><div class="heros-call-choice-description"></div><button type="button" class="heros-call-choice-rules">Read all details ↗</button>';
+  element.setAttribute('aria-label', copy('ui.journey.regionLabel'));
+  const copyPanel = node('div', 'heros-call-choice-copy');
+  copyPanel.innerHTML = `<h2 class="heros-call-choice-name"></h2><div class="heros-call-choice-description"></div><button type="button" class="heros-call-choice-rules">${htmlCopy('ui.journey.readDetails')}</button>`;
   const picker = node('div', 'heros-call-choice-picker');
   const label = node('div', 'heros-call-choice-label');
   const roster = node('div', 'heros-call-choice-roster');
   roster.setAttribute('role','group');
-  picker.append(label, roster); element.append(copy, picker);
+  picker.append(label, roster); element.append(copyPanel, picker);
   const footer = node('footer', 'heros-call-journey-footer');
-  const back = node('button', 'heros-call-journey-back', '← Previous chapter'); back.type='button';
+  const back = node('button', 'heros-call-journey-back', copy('ui.journey.previous')); back.type='button';
   const hint = node('p','heros-call-journey-hint');hint.setAttribute('role','status');
   const action = node('button','heros-call-journey-confirm'); action.type='button';
   footer.append(back, hint, action);
@@ -39,7 +33,7 @@ export function createJourney(state, {previewCard, openRules, navigate}) {
   const selected = new Map();
   const controls=createControls(state,()=>sync());
   back.addEventListener('click',()=>navigate(Math.max(0,state.chapter-1)));
-  copy.querySelector('button').addEventListener('click',()=>{if(current?.card.isConnected) openRules(current.card);});
+  copyPanel.querySelector('button').addEventListener('click',()=>{if(current?.card.isConnected) openRules(current.card);});
   action.addEventListener('click',()=>{
     if(action.disabled) return;
     if(state.chapter<state.nativeStage) {navigate(state.nativeStage);return;}
@@ -55,12 +49,12 @@ export function createJourney(state, {previewCard, openRules, navigate}) {
     current=entry;
     selected.set(state.chapter, entry.card);
     const request=++ticket;
-    const title=entry.card.querySelector('.nimble-card__title')?.textContent.trim() || 'Your choice';
-    copy.querySelector('h2').textContent=title;
-    const description=copy.querySelector('.heros-call-choice-description');
-    description.textContent='Loading details…';
+    const title=entry.card.querySelector('.nimble-card__title')?.textContent.trim() || copy('ui.journey.fallbackName');
+    copyPanel.querySelector('h2').textContent=title;
+    const description=copyPanel.querySelector('.heros-call-choice-description');
+    description.textContent=copy('ui.details.loading');
     for(const item of cards) item.button.setAttribute('aria-pressed',String(item===entry));
-    action.setAttribute('aria-label',`Choose ${title} and continue`);
+    action.setAttribute('aria-label',copy('ui.common.chooseAndContinue', {title}));
     if(state.chapter===1) state.previewAncestry=entry.card;
     if(state.chapter===2) state.previewBackground=entry.card;
     state.refreshArt();
@@ -77,7 +71,7 @@ export function createJourney(state, {previewCard, openRules, navigate}) {
     state.root.classList.toggle('heros-call-journey-active',active);
     state.root.dataset.herosCallChapter=String(state.chapter);
     intro.hidden=footer.hidden=!active;
-    intro.querySelector('span').textContent=`CHAPTER ${String(state.chapter+1).padStart(2,'0')} / 09 · ${chapter.label.toUpperCase()}`;
+    intro.querySelector('span').textContent=copy('ui.journey.chapterCount', {number: String(state.chapter+1).padStart(2,'0'), total: String(CHAPTERS.length).padStart(2,'0'), label: chapter.label.toUpperCase()});
     intro.querySelector('h1').textContent=chapter.title;
     intro.querySelector('p').textContent=chapter.description;
     const section = state.body.querySelector(`[id$="-stage-${state.chapter===1?'1a':'2'}"]`);
@@ -88,17 +82,17 @@ export function createJourney(state, {previewCard, openRules, navigate}) {
     state.root.classList.toggle('heros-call-choice-active',browse);
     element.hidden=!browse;
     if(browse) {
-      label.textContent=`${candidates.length} ${state.chapter===1?'ancestries':'backgrounds'} · Preview, then choose`;
-      roster.setAttribute('aria-label',state.chapter===1?'Ancestry previews':'Background previews');
+      label.textContent=state.chapter===1 ? copy('ui.journey.ancestryCount', {count: candidates.length}) : copy('ui.journey.backgroundCount', {count: candidates.length});
+      roster.setAttribute('aria-label',state.chapter===1?copy('ui.journey.ancestryPreviews'):copy('ui.journey.backgroundPreviews'));
       if(cards.length!==candidates.length || cards.some((e,i)=>e.card!==candidates[i])) {
         roster.replaceChildren();
         cards=candidates.map(card=>{
           const button=node('button','heros-call-origin-choice');button.type='button';
-          const title=card.querySelector('.nimble-card__title')?.textContent.trim() || 'Choice';
+          const title=card.querySelector('.nimble-card__title')?.textContent.trim() || copy('ui.journey.fallbackChoice');
           const img=node('img','');img.src=card.querySelector('img')?.getAttribute('src') || '';img.alt='';
           button.append(img,node('span','',title));
           const source=card.querySelector('.nimble-card__source-label')?.textContent.trim();
-          button.setAttribute('aria-label',`Preview ${title}${source?` (${source})`:''}`);
+          button.setAttribute('aria-label',source ? copy('ui.common.previewWithSource', {title, source}) : copy('ui.common.preview', {title}));
           const entry={card,button};
           button.addEventListener('click',()=>select(entry));
           button.addEventListener('focus',()=>select(entry));
@@ -125,28 +119,28 @@ export function createJourney(state, {previewCard, openRules, navigate}) {
       }
     }
     back.hidden=state.chapter===0;
-    let hintText=state.chapter===8 && state.nameInput.value.trim()?'Your hero is ready. Review your choices, then begin.':hints[state.chapter];
-    if(picking)hintText=state.chapter===3?'Inspect your provisions, then confirm your choice.':'Compare the arrays, then confirm your potential.';
-    if(state.chapter===5 && controls.modifier)hintText=`Assign ${controls.modifier.textContent.trim()} to an attribute. Escape cancels.`;
+    let hintText=state.chapter===8 && state.nameInput.value.trim()?copy('ui.journey.ready'):chapter.hint;
+    if(picking)hintText=state.chapter===3?copy('ui.journey.equipmentHint'):copy('ui.journey.potentialHint');
+    if(state.chapter===5 && controls.modifier)hintText=copy('ui.journey.assignHint', {modifier: controls.modifier.textContent.trim()});
     if(state.chapter===6 && live){
       const heading=state.body.querySelector('section[id$="-stage-6"] h3')?.textContent.trim();
-      if(heading)hintText=nativeConfirm?'Your training is ready. Confirm to continue.':heading.replace(/^Step \d+\.\s*/i,'');
+      if(heading)hintText=nativeConfirm?copy('ui.journey.trainingReady'):heading.replace(/^Step \d+\.\s*/i,'');
     }
-    if(state.chapter===7 && live && nativeConfirm)hintText='Your languages are ready. Confirm to continue.';
+    if(state.chapter===7 && live && nativeConfirm)hintText=copy('ui.journey.languagesReady');
     if(state.chapter===1 && live && !browse){
       const bonus=state.body.querySelector('[id$="-stage-1b"] .nimble-ancestry-bonus-actions');
-      intro.querySelector('h1').textContent=bonus?'Claim your ancestry gift':'Shape your ancestry';
-      intro.querySelector('p').textContent=bonus?'Keep the gift of your people, or choose a different tradition.':'Finish the choices that make this ancestry your own.';
+      intro.querySelector('h1').textContent=bonus?copy('ui.journey.ancestryGiftTitle'):copy('ui.journey.ancestryShapeTitle');
+      intro.querySelector('p').textContent=bonus?copy('ui.journey.ancestryGiftDescription'):copy('ui.journey.ancestryShapeDescription');
     }
     if(hint.textContent!==hintText)hint.textContent=hintText;
     action.hidden=!active || state.chapter===8;
     action.disabled=state.submitting || (state.chapter===state.nativeStage && !browse && (!nativeConfirm||nativeConfirm.disabled));
-    if(state.chapter<state.nativeStage) action.textContent='Return to your next choice →';
-    else if(browse) action.textContent=state.chapter===1?'Choose this ancestry →':'Choose this background →';
-    else if(picking) action.textContent=state.chapter===3?(nativeConfirm?.querySelector('.fa-coins')?'Take starting gold →':'Take class equipment →'):'Choose this potential →';
+    if(state.chapter<state.nativeStage) action.textContent=copy('ui.journey.return');
+    else if(browse) action.textContent=state.chapter===1?copy('ui.journey.chooseAncestry'):copy('ui.journey.chooseBackground');
+    else if(picking) action.textContent=state.chapter===3?(nativeConfirm?.querySelector('.fa-coins')?copy('ui.journey.takeGold'):copy('ui.journey.takeEquipment')):copy('ui.journey.choosePotential');
     else if(nativeConfirm) action.textContent=nativeConfirm.textContent.trim()+' →';
-    else action.textContent=({5:'Confirm attributes',6:'Confirm training',7:'Confirm languages'})[state.chapter] || 'Complete the choices above';
-    action.setAttribute('aria-label',browse?`Choose ${current?.card.querySelector('.nimble-card__title')?.textContent.trim()||'this option'} and continue`:action.textContent.replace(/ →$/,''));
+    else action.textContent=({5:copy('ui.journey.confirmAttributes'),6:copy('ui.journey.confirmTraining'),7:copy('ui.journey.confirmLanguages')})[state.chapter] || copy('ui.journey.completeChoices');
+    action.setAttribute('aria-label',browse?copy('ui.common.chooseAndContinue', {title: current?.card.querySelector('.nimble-card__title')?.textContent.trim()||copy('ui.common.thisOption')}):action.textContent.replace(/ →$/,''));
     if(active && (previousChapter!==state.chapter || previousBrowse!==browse)) {
       state.body.scrollTop=0;
       // Keep keyboard focus in the new chapter when the native button disappears.

@@ -6,6 +6,8 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {ARTWORK} from '../scripts/art-credits.mjs';
 import {CHAPTER_ARTWORK} from '../scripts/chapter-art.mjs';
+import {COPY} from '../scripts/copy.mjs';
+import {validateCopy} from './copy-validation.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = path => readFileSync(resolve(root, path), 'utf8');
@@ -40,7 +42,7 @@ for (const doc of ['README.md', 'CHANGELOG.md', 'QA.md']) {
 }
 
 // The source folder is the publication boundary, not the parent workspace.
-const directories = new Set(['scripts', 'styles', 'assets', 'licenses', 'tests', 'tools', 'docs', '.github']);
+const directories = new Set(['scripts', 'styles', 'assets', 'licenses', 'tests', 'tools', 'content', 'docs', '.github']);
 const rootFiles = new Set(['module.json', 'package.json', 'LICENSE', 'README.md', 'CREDITS.md',
   'ART-REVIEW.md', 'QA.md', 'CONTRIBUTING.md', 'CHANGELOG.md', 'RELEASING.md',
   'RELEASE-READINESS.md', '.gitignore', '.gitattributes']);
@@ -51,8 +53,9 @@ for (const name of readdirSync(root)) {
 }
 const publishedFiles = [...rootFiles, ...[...directories].flatMap(files)];
 const sourceExtensions = {scripts: /\.mjs$/, styles: /\.css$/, assets: /\.(png|jpe?g|webp|svg)$/,
-  licenses: /\.(txt|json|md)$/, tests: /\.(mjs|json|py)$/, tools: /\.(mjs|py)$/,
-  docs: /^docs\/screenshots\/[a-z0-9-]+\.png$/,
+  licenses: /\.(txt|json|md)$/, tests: /\.(mjs|json|py)$/, tools: /\.(mjs|py|json)$/,
+  content: /^content\/(callings|chapters|interface|artwork)\.mjs$/,
+  docs: /^docs\/(?:screenshots\/[a-z0-9-]+\.png|COPY-(?:AUTHORING|INVENTORY)\.md)$/,
   '.github': /\.(ya?ml|md)$/};
 for (const path of publishedFiles) {
   existsFile(path);
@@ -62,11 +65,28 @@ for (const path of publishedFiles) {
   assert.ok(lstatSync(resolve(root, path)).size < 100 * 1024 * 1024, `File too large for ordinary Git: ${path}`);
 }
 
+const copyEntries = validateCopy(COPY, json('tools/copy-contract.json'));
+for (const [name, section] of Object.entries({callings:'callings', chapters:'chapters', interface:'ui', artwork:'artwork'})) {
+  // Keep the editable modules JSON-shaped: no executable expressions or imports.
+  const source = read(`content/${name}.mjs`).replace(/^\/\/[^\n]*\n/gm, '').trim();
+  assert.ok(source.startsWith('export default ') && source.endsWith(';'), `Invalid content wrapper: ${name}`);
+  assert.deepEqual(JSON.parse(source.slice('export default '.length, -1)), COPY[section], `Content must be plain data: ${name}`);
+}
+const copyInventory = read('docs/COPY-INVENTORY.md');
+for (const key of Object.keys(copyEntries)) assert.ok(copyInventory.includes('`'+key+'`'), `Undocumented copy entry: ${key}`);
+for (const path of files('scripts')) {
+  for (const match of read(path).matchAll(/\b(?:copy|htmlCopy)\('([^']+)'/g)) {
+    assert.ok(Object.hasOwn(copyEntries, match[1]), `Unknown copy key ${match[1]} in ${path}`);
+  }
+}
+
 const art = [...ARTWORK, ...CHAPTER_ARTWORK];
 assert.equal(new Set(art.map(a => a.id)).size, art.length, 'Duplicate artwork IDs');
 assert.equal(new Set(art.map(a => a.image)).size, art.length, 'Duplicate artwork paths');
-assert.deepEqual(json('licenses/art-sources.json'), ARTWORK, 'Runtime/source art records diverge');
-assert.deepEqual(json('licenses/chapter-art-sources.json'), CHAPTER_ARTWORK, 'Runtime/source chapter records diverge');
+const sourceRecords = records => records.map(({subject, changes, ...record}) => record);
+assert.deepEqual(json('licenses/art-sources.json'), sourceRecords(ARTWORK), 'Runtime/source art records diverge');
+assert.deepEqual(json('licenses/chapter-art-sources.json'), sourceRecords(CHAPTER_ARTWORK), 'Runtime/source chapter records diverge');
+assert.deepEqual(Object.keys(COPY.artwork).sort(), art.map(a => a.id).sort(), 'Artwork copy must cover exactly the credited illustrations');
 const licenseTexts = {
   'CC BY 3.0': 'CC-BY-3.0.txt', 'CC BY 4.0': 'CC-BY-4.0.txt',
   'CC BY-SA 3.0': 'CC-BY-SA-3.0.txt', 'CC BY-SA 4.0': 'CC-BY-SA-4.0.txt',
@@ -108,4 +128,4 @@ for (const path of publishedFiles.filter(p => /\.(mjs|css|json|md)$/.test(p) && 
   if (!path.startsWith('tools/')) assert.ok(!retired.test(content), `Retired namespace in ${path}`);
   assert.ok(!/(?:\/var)?\/home\/[^/]+\/(?:Documents|\.codex)\//.test(content), `Workstation path in ${path}`);
 }
-console.log(`Validated ${manifest.id} ${manifest.version}: ${art.length} illustrations, ${inventory.length} credited assets, source hashes, licenses, paths and syntax.`);
+console.log(`Validated ${manifest.id} ${manifest.version}: ${Object.keys(copyEntries).length} copy entries, ${art.length} illustrations, ${inventory.length} credited assets, source hashes, licenses, paths and syntax.`);

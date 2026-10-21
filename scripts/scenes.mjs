@@ -1,3 +1,4 @@
+import {copy, COPY} from './copy.mjs';
 import {ARTWORK} from './art-credits.mjs';
 import {CHAPTER_ARTWORK} from './chapter-art.mjs';
 import {CHAPTERS} from './model.mjs';
@@ -12,14 +13,7 @@ const ancestryArt={
  Goblin:'goblin-salvager',Kobold:'scaled-augur','Minotaur/Beastfolk':'satyr',
  'Oozeling/Construct':'living-ooze',Planarbeing:'planar-jinn',Ratfolk:'rat-knight',Wyrdling:'living-flame'
 };
-const ancestryCaptions={
- 'Dryad/Shroomling':'Dryad example · a living tree',
- 'Minotaur/Beastfolk':'Beastfolk example · a satyr',
- 'Oozeling/Construct':'Oozeling example · living mud',
- Kobold:'Kobold inspiration · a small reptilian spellcaster',
- Planarbeing:'Planarbeing inspiration · a jinn',
- Wyrdling:'Wyrdling inspiration · living elemental magic'
-};
+const ancestryCaptions=COPY.ui.scenes.ancestryCaptions;
 // Built-in identity checks prevent a homebrew option with the same name from
 // being silently presented as an official ancestry/background.
 const ANCESTRIES = {
@@ -102,7 +96,7 @@ export function resolveChapterArt({chapter,calling,ancestry,ancestryVariant,back
  hero ??= resolveHero(calling,ancestry);
  if(chapter===0 || chapter===8) return {...hero,chapterArt:false};
  let id=chapterDefaults[chapter]||'sitting-elf';
- let subject=CHAPTERS[chapter]?.label||'Your story';
+ let subject=CHAPTERS[chapter]?.label||copy('ui.scenes.fallbackSubject');
  let specific=false;
  const key=normalize(focus);
  if(chapter===1 && ancestry) {
@@ -119,15 +113,15 @@ export function resolveChapterArt({chapter,calling,ancestry,ancestryVariant,back
      const label=ancestryVariant || ancestry.name;
      return {art:null,key:`ancestry-symbol:${label}:${ancestry.image}`,image:ancestry.image,
        fallback:'modules/heros-call/assets/heros-call.svg',label,
-       note:`Ancestry symbol · ${label}`,chapterArt:true,subject:label,kind:'emblem',
-       matched:false,preview:!!focus,fallbackNote:'Ancestry symbol unavailable',
-       explanation:'The symbol from your installed ancestry. A curated character illustration is not available for this option.'};
+       note:copy('ui.scenes.ancestrySymbol', {label}),chapterArt:true,subject:label,kind:'emblem',
+       matched:false,preview:!!focus,fallbackNote:copy('ui.scenes.symbolUnavailable'),
+       explanation:copy('ui.scenes.symbolExplanation')};
    }
  } else if(chapter===2 && background) {
    subject=background.name;
    if(known(background,BACKGROUNDS)) {id=backgroundArt[background.name]||id;specific=true;}
  } else if(chapter===3) {
-   subject=key==='gold'?'Starting gold':key==='equipment'?'Class equipment':'Arms for the road';
+   subject=key==='gold'?copy('ui.scenes.gold'):key==='equipment'?copy('ui.scenes.equipment'):copy('ui.scenes.provisions');
    if(key==='gold')id='scroll-raider';
    else id='armory';
  } else if(chapter===4 && key) {
@@ -139,10 +133,10 @@ export function resolveChapterArt({chapter,calling,ancestry,ancestryVariant,back
  const art=byId.get(id);
  return {
    art,key:id,image:art.image,fallback:'modules/heros-call/assets/heros-call.svg',label:art.subject,
-   note:chapter===1&&specific?(ancestryCaptions[ancestry.name]||`Ancestry illustration · ${subject}`):`Chapter illustration · ${subject}`,
+   note:chapter===1&&specific?(ancestryCaptions[ancestry.name]||copy('ui.scenes.ancestryIllustration', {subject})):copy('ui.scenes.chapterIllustration', {subject}),
    chapterArt:true,subject,kind:art.kind||'vignette',matched:false,preview:!!focus,
-   fallbackNote:'Chapter illustration unavailable',
-   explanation:chapter===3?'Equipment theme; use the choices for your actual inventory.':'An illustration of this chapter, not a literal portrait of your hero.'
+   fallbackNote:copy('ui.scenes.chapterUnavailable'),
+   explanation:chapter===3?copy('ui.scenes.equipmentExplanation'):copy('ui.scenes.chapterExplanation')
  };
 }
 

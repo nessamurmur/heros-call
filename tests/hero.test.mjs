@@ -4,6 +4,7 @@ import {readFileSync,existsSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolveHero} from '../scripts/hero.mjs';
 import {ARTWORK,CALLING_ART} from '../scripts/art-credits.mjs';
+import {copy} from '../scripts/copy.mjs';
 
 const calling = (name,key) => ({name,image:`systems/nimble/assets/classImages/${key}.webp`});
 const human = {name:'Human',image:'icons/environment/people/commoner.webp'};
@@ -20,12 +21,13 @@ test('Orc Mage has a distinct illustration from the initial Elf example',()=>{
   assert.equal(resolveHero(calling('Mage','mage'),null).key,'elf-mage');
   const hero=resolveHero(calling('Mage','mage'),orc,true);
   assert.equal(hero.key,'orc-shaman'); assert.equal(hero.matched,true);
-  assert.match(hero.note,/Preview.*Orc Mage/);
+  assert.equal(hero.note,copy('ui.hero.previewPrefix')+copy('ui.hero.matchedIllustration',{ancestry:'Orc',calling:'Mage'}));
 });
 test('unsupported ancestry is identified as a class example, never a matching avatar',()=>{
   const hero=resolveHero(hunter,{name:'Bunbun',image:'icons/creatures/mammals/rabbit-movement-glowing-green.webp'});
-  assert.equal(hero.matched,false); assert.match(hero.note,/Calling illustration · Elf example/);
-  assert.doesNotMatch(hero.label,/Bunbun/);
+  assert.equal(hero.matched,false);
+  assert.equal(hero.note,copy('ui.hero.callingIllustration',{ancestry:'Elf'}));
+  assert.equal(hero.key,'elf-hunter');
 });
 test('homebrew names cannot silently substitute a built-in class or ancestry',()=>{
   const hero=resolveHero({name:'Hunter',image:'worlds/test/custom-hunter.webp'},elf);

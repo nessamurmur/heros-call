@@ -1,3 +1,4 @@
+import {copy} from './copy.mjs';
 // Enhance native controls without owning, copying or recalculating Nimble's rules.
 export function createControls(state, changed) {
   const controller=new AbortController(), original=new Map(), previews=new Map();
@@ -60,17 +61,17 @@ export function createControls(state, changed) {
     }
     if(state.chapter===5&&active()){
       stage()?.querySelectorAll('.nimble-array-value-list__option[draggable="true"],.nimble-cc-ability-score__value[draggable="true"]').forEach(token=>{
-        remember(token,'role','button');remember(token,'tabindex','0');remember(token,'aria-label',`Select modifier ${token.textContent.trim()}`);remember(token,'aria-pressed',token===modifier);
+        remember(token,'role','button');remember(token,'tabindex','0');remember(token,'aria-label',copy('ui.controls.selectModifier', {modifier: token.textContent.trim()}));remember(token,'aria-pressed',token===modifier);
       });
       stage()?.querySelectorAll('.nimble-cc-ability-score').forEach(target=>{
         const name=target.querySelector('h4')?.textContent.trim();
-        remember(target,'role','button');remember(target,'tabindex','0');remember(target,'aria-label',`Assign selected modifier to ${name}`);
+        remember(target,'role','button');remember(target,'tabindex','0');remember(target,'aria-label',copy('ui.controls.assignModifier', {attribute: name}));
       });
     }
     if(state.chapter===6&&active())stage()?.querySelectorAll('.nimble-skill').forEach(skill=>{
       const name=skill.querySelector('.nimble-skill__name')?.textContent.trim();
       skill.querySelectorAll('.nimble-skill-point-star').forEach((button,i)=>{
-        remember(button,'aria-label',`${name}: ${i+1} training ${i?'points':'point'}`);
+        remember(button,'aria-label',i ? copy('ui.controls.trainingPoints', {skill: name, count: i+1}) : copy('ui.controls.trainingPoint', {skill: name, count: i+1}));
         remember(button,'aria-pressed',!button.querySelector('.nimble-skill-point-star__icon--inactive'));
       });
     });

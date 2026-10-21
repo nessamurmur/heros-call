@@ -1,14 +1,7 @@
-export const CHAPTERS = [
-  {label:'Calling',title:'Choose your calling',description:'Adventure calls. How will you face the unknown?'},
-  {label:'Ancestry',title:'Remember your roots',description:'Choose the people, gifts, and traditions that shaped you.'},
-  {label:'Background',title:'A life before adventure',description:'Every hero brings a story. What is yours?'},
-  {label:'Equipment',title:'Prepare for the road',description:'Take what you need. Leave room for what you will find.'},
-  {label:'Potential',title:'Discover your potential',description:'Choose the balance of strengths that defines your hero.'},
-  {label:'Attributes',title:'Make your strengths known',description:'Assign your abilities. Decide where your talent shines.'},
-  {label:'Skills',title:'Show what you know',description:'Turn experience into instinct. Choose your practiced skills.'},
-  {label:'Languages',title:'Find your voice',description:'The world is full of stories. Choose which you can hear.'},
-  {label:'Begin',title:'A legend in the making',description:'Review your choices, give your hero a name, and begin.'}
-];
+import chapters from '../content/chapters.mjs';
+
+// Keep native stage order independent of the order in the editable file.
+export const CHAPTERS = ["calling", "ancestry", "background", "equipment", "potential", "attributes", "skills", "languages", "begin"].map(key => chapters[key]);
 
 export function stageFromClass(value = '') {
   const match=String(value).match(/nimble-progress-bar--stage-(\d+)/);

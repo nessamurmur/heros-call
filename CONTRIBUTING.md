@@ -22,6 +22,14 @@ checklist in QA.md. Record the versions and steps tested. Do not broaden the
 compatibility range without testing the corresponding versions. Keep all Svelte
 controls mounted and delegate rules and submission to Nimble.
 
+## Interface copy
+
+Use the data-only files in `content/` for module-authored UI text. Follow
+[docs/COPY-AUTHORING.md](docs/COPY-AUTHORING.md) and record human authorship in
+[docs/COPY-INVENTORY.md](docs/COPY-INVENTORY.md). Preserve keys and named
+placeholders; run `npm run check` before previewing. Do not put new copy directly
+in rendering code or duplicate authored wording in fallbacks.
+
 ## Artwork
 
 For each proposed asset, include its title, artist, original source, exact license,
@@ -41,6 +49,9 @@ array in `scripts/art-credits.mjs` or `scripts/chapter-art.mjs`, update
 `licenses/asset-checksums.json`, and add the work to CREDITS.md. Include the full
 license and any upstream notices. Update ART-REVIEW.md for visual coverage and
 policy evidence. `npm run check` detects missing, changed or unattributed assets.
+Editorial `subject` and presentation `changes` descriptions belong in
+`content/artwork.mjs`, keyed by artwork ID; the runtime merges them with the
+source facts. Add corresponding copy-contract and inventory entries for new art.
 
 ## Reporting problems
 

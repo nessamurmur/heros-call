@@ -22,7 +22,16 @@ CI status are available on the repository’s Releases and Actions pages.
 
 ## Release setup and remaining acceptance coverage
 
-Local checks passed: 24 Node assertions, four packaging tests, 13 offline DOM
+**Official-listing follow-up:** the original readiness review missed Foundry’s
+requirements for human-authored prepared UI and marketing text. Existing
+AI-authored/assisted UI wording is now isolated in `content/`, with an authoring
+guide and pending review inventory under `docs/`. Extraction is not a rewrite
+or compliance certification. Human-authored replacement copy, the package
+description, and the website listing still need attention before submission.
+See [COPY-AUTHORING.md](docs/COPY-AUTHORING.md) and
+[Foundry’s AI policy](https://foundryvtt.com/article/ai-policy/).
+
+Original readiness checks passed: 24 Node assertions, four packaging tests, 13 offline DOM
 interaction checks, all module syntax checks, all 64 credited asset hashes, and
 release ZIP integrity. See QA.md for dates and what each check does not establish.
 

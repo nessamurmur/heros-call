@@ -4,6 +4,7 @@ import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolveChapterArt, chapterFocusFromTarget} from '../scripts/scenes.mjs';
 import {CHAPTER_ARTWORK} from '../scripts/chapter-art.mjs';
+import {copy} from '../scripts/copy.mjs';
 const hunter={name:'Hunter',image:'systems/nimble/assets/classImages/hunter.webp'};
 const elf={name:'Elf',image:'icons/consumables/plants/dried-leaf-stem-twig-green.webp'};
 const human={name:'Human',image:'icons/environment/people/commoner.webp'};
@@ -30,12 +31,12 @@ test('background pictures distinguish woodland, sea, study and a haunted past',(
 });
 test('unknown and homebrew ancestry identities retain their own artwork instead of an unrelated landscape',()=>{
  for(const ancestry of [{name:'Bunbun',image:'custom-bunbun.png'},{...elf,image:'worlds/test/elf.png'}]){
-  const s=scene(1,{ancestry});assert.equal(s.image,ancestry.image);assert.match(s.note,/Ancestry symbol/);assert.equal(s.matched,false);
+  const s=scene(1,{ancestry});assert.equal(s.image,ancestry.image);assert.equal(s.note,copy('ui.scenes.ancestrySymbol',{label:ancestry.name}));assert.equal(s.matched,false);
  }
 });
 test('gold and class equipment preview different themes without implying inventory',()=>{
  const gear=scene(3,{focus:'equipment'}),gold=scene(3,{focus:'gold'});
- assert.notEqual(gear.key,gold.key);assert.match(gear.explanation,/actual inventory/);assert.equal(gold.subject,'Starting gold');
+ assert.notEqual(gear.key,gold.key);assert.equal(gear.explanation,copy('ui.scenes.equipmentExplanation'));assert.equal(gold.subject,copy('ui.scenes.gold'));
 });
 test('attributes and skills respond to the particular native option in focus',()=>{
  assert.notEqual(scene(5,{focus:'strength'}).key,scene(5,{focus:'dexterity'}).key);
@@ -53,7 +54,7 @@ test('all chapter artwork has original bytes and individual source and license r
   const bytes=readFileSync(new URL('../'+art.image.replace('modules/heros-call/',''),import.meta.url));
   assert.equal(createHash('sha256').update(bytes).digest('hex'),art.sha256);
   assert.ok(art.artist&&art.source.startsWith('https://')&&/^https:\/\/(creativecommons.org|www.gnu.org)\//.test(art.licenseUrl));
-  assert.match(art.changes,/Original file unchanged/);
+  assert.equal(art.changes,copy(`artwork.${art.id}.changes`));
  }
  assert.ok(CHAPTER_ARTWORK.some(a=>a.license==='GPL-2.0-or-later'));
 });

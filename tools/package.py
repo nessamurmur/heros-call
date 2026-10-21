@@ -11,10 +11,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DOCUMENTS = (
     'module.json', 'LICENSE', 'README.md', 'CREDITS.md', 'ART-REVIEW.md',
     'QA.md', 'CHANGELOG.md', 'CONTRIBUTING.md', 'RELEASING.md', 'RELEASE-READINESS.md',
+    'docs/COPY-AUTHORING.md', 'docs/COPY-INVENTORY.md',
 )
 DIRECTORIES = {'scripts': {'.mjs'}, 'styles': {'.css'},
                'assets': {'.png', '.jpg', '.jpeg', '.webp', '.svg'},
-               'licenses': {'.txt', '.json', '.md'}}
+               'licenses': {'.txt', '.json', '.md'}, 'content': {'.mjs'}}
 
 
 def runtime_files(root):

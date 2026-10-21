@@ -1,5 +1,27 @@
 # QA — Hero’s Call 0.1.0
 
+## Unreleased copy extraction — 2026-10-21
+
+- All 29 Node tests and four Python packaging tests passed. Tests now check
+  authored text through its keys instead of requiring the old English wording.
+- All 336 copy entries pass key, type, placeholder, inventory and syntax checks.
+  Artwork source facts and all 64 original asset hashes still validate.
+- The existing private Happy DOM fixture passed all 13 interaction checks across
+  nine chapters after extraction, including gallery, credits, native-control
+  forwarding, portrait attribution and Classic-view cleanup.
+- In a separate temporary checkout, every content string was changed to include
+  quotes, ampersands and literal HTML-like text. All 29 Node tests still passed.
+  Five additional offline DOM checks confirmed the new words reach class
+  previews, navigation, chapter prompts, gallery, credits, review and tooltips;
+  no test markup became a DOM element, and Classic view still worked.
+- A candidate archive built and passed integrity checks. All four content files,
+  the copy loader and both authoring guides match their source bytes in the ZIP.
+  Development tools, fixtures and documentation screenshots remain excluded.
+
+These are offline checks with simulated image loading, not a new live Foundry
+test or an assessment of human authorship. The current wording remains pending
+in [COPY-INVENTORY.md](docs/COPY-INVENTORY.md). No new public release was made.
+
 ## First public version
 
 The 2026-10-21 readiness pass resets the first public version to 0.1.0 and
