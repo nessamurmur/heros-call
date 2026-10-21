@@ -1,9 +1,18 @@
 # Hero’s Call
 
+> **Current status: prototype**
+>
+> Hero’s Call is a prototype, and some of its *copy* is currently AI-drafted.
+> The first intentional release will have entirely human-authored copy, with
+> AI assistance limited to *code*.
+>
+> All artwork bundled with the module is openly licensed work by human artists,
+> who are credited within the app.
+
 **Character Creation for Nimble**
 
 An illustrated character creator for **Foundry VTT 14 / Nimble 0.10.0**.
-Version **0.1.0** is the first public release, intended for early testing.
+Version **0.1.0** is a publicly available prototype for early testing.
 A charcoal, ivory and gold interface pairs each choice with credited open artwork.
 All 24 backgrounds have distinct illustrations, and 15 ancestry choices have
 character art. Nine ancestry portraits remain unresolved and use their own
